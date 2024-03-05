@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State private var viewModel = ViewModel()
+    
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
         
-    @State private var selectedJewellery = "sAll"
+    @State private var selectedJewellery: JewelleryType = .all
     
     var body: some View {
         NavigationStack {
@@ -20,7 +22,7 @@ struct HomeView: View {
                 HStack {
                     Spacer()
                     Picker(selection: $selectedJewellery) {
-                        ForEach(Product.JewelleryType.allCases, id: \.self) {
+                        ForEach(JewelleryType.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
                     } label: {
@@ -39,6 +41,7 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("The Butterfly Effect")
+            .onAppear(perform: viewModel.getAllItems)
         }
     }
 }

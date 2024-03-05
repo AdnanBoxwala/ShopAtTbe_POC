@@ -8,10 +8,6 @@
 import PhotosUI
 import SwiftUI
 
-enum RecordType: String {
-    case product = "Product"
-}
-
 struct AddInventoryItemView: View {
     @FocusState private var editorIsFocussed: Bool
     @State private var viewModel = ViewModel()
@@ -25,7 +21,7 @@ struct AddInventoryItemView: View {
                         .textInputAutocapitalization(.words)
                     
                     Picker("Jewellery type", selection: $viewModel.product.type) {
-                        ForEach(Product.JewelleryType.allCases, id: \.self) {
+                        ForEach(JewelleryType.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
                     }

@@ -13,6 +13,8 @@ extension HomeView {
     class ViewModel {
         private var database: CKDatabase
         private var container: CKContainer
+        private(set) var items = [Product]()
+        var selectedJewellery: JewelleryType = .all
         
         init() {
             let newContainer = CKContainer(identifier: "iCloud.com.github.AdnanBox.ShopAtTBE")
@@ -21,6 +23,7 @@ extension HomeView {
         }
         
         func getAllItems() {
+            if !items.isEmpty { return }
             let query = CKQuery(recordType: RecordType.product.rawValue, predicate: NSPredicate(value: true))
             
             self.database.fetch(withQuery: query) { result in
@@ -31,7 +34,7 @@ extension HomeView {
                             switch $0 {
                             case .success(let record):
                                 if let product = Product.fromRecord(record) {
-                                    print(product.id)
+                                    self.items.append(product)
                                 }
                             case .failure(let error):
                                 print(error.localizedDescription)

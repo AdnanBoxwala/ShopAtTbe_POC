@@ -13,15 +13,13 @@ struct HomeView: View {
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
-        
-    @State private var selectedJewellery: JewelleryType = .all
     
     var body: some View {
         NavigationStack {
             VStack {
                 HStack {
                     Spacer()
-                    Picker(selection: $selectedJewellery) {
+                    Picker(selection: $viewModel.selectedJewellery) {
                         ForEach(JewelleryType.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
@@ -32,10 +30,15 @@ struct HomeView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        NavigationLink {
-                            ProductDetailView()
-                        } label: {
-                            ProductView()
+                        ForEach(viewModel.items) { item in
+                            NavigationLink {
+                                ProductDetailView(item: item)
+                            } label: {
+                                ProductView(
+                                    image: item.displayImage,
+                                    name: item.name,
+                                    price: item.price)
+                            }
                         }
                     }
                 }

@@ -5,26 +5,32 @@
 //  Created by Adnan Boxwala on 14.02.24.
 //
 
+import CloudKit
 import SwiftUI
 
 struct ProductView: View {
+    let image: UIImage
+    let name: String
+    let price: Double
+    
     var body: some View {
         VStack {
-            Image("Chandbali_1")
+            Image(uiImage: image)
                 .resizable()
+                .scaledToFill()
                 .frame(width: 150, height: 200)
-                .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 25.0))
-            Text("Chandbali")
+            
+            Text(name)
                 .font(.headline)
-                .foregroundStyle(.black)
-            Text("AED 1000.00")
+                .foregroundStyle(Color.primary)
+            Text(price.formatted(.currency(code: "AED")))
                 .font(.caption)
-                .foregroundStyle(.black)
+                .foregroundStyle(Color.primary)
         }
     }
 }
 
 #Preview {
-    ProductView()
+    ProductView(image: UIImage(named: "Chandbali_1")!, name: "test", price: 100.0)
 }

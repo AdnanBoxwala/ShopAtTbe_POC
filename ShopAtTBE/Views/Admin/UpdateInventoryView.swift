@@ -26,6 +26,8 @@ struct UpdateInventoryView: View {
                 NavigationLink {
                     UpdateInventoryItemView()
                 } label: {
+                    // TODO:
+                    // button goes on two lines in smaller phone
                     Label("Update existing product", systemImage: "goforward.plus")
                         .font(.title)
                         .foregroundStyle(Color.primary)

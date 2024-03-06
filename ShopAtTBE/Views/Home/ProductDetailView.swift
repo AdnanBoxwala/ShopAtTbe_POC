@@ -8,33 +8,46 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    let resourceNames = ["Chandbali_1", "Chandbali_2", "Chandbali_3"]
+    let item: Product
+    
     var body: some View {
+        // TODO:
+        // add everything in a vertical scrollview
+        // zstack with add to bucket button on top
         VStack(alignment: .leading) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(resourceNames, id: \.self) { name in
-                        Image(name)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity)
+            GeometryReader { proxy in
+                ScrollView(.horizontal, showsIndicators: true) {
+                    HStack {
+                        ForEach(item.images, id: \.self) { uiimage in
+                            NavigationLink {
+                                // TODO:
+                                // allow zoom
+                                // https://www.hackingwithswift.com/quick-start/swiftui/how-to-handle-pinch-to-zoom-for-views
+                                
+                                Image(uiImage: uiimage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: .infinity)
+                            } label: {
+                                Image(uiImage: uiimage)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: .infinity, maxHeight: proxy.size.height)
+                            }
+                        }
                     }
                 }
             }
             
-            Text("Earrings")
+            Text(item.type.rawValue)
                 .font(.headline)
-            Text("Chandbali")
+            Text(item.name)
                 .font(.title)
-            Text("AED 1000.00")
+            Text(item.price, format: .currency(code: "AED"))
                 .font(.title3)
             
             
-            Text("""
-                 
-                 These pastel blue enamel chandbali earrings are a beautiful addition to a bridal outfit. These earrings feature a traditional chandbali design with intricate detailing and delicate pearls and stones. These earrings can be paired with pastel blue or white outfits and are perfect for a daytime wedding or engagement ceremony.
-                 
-                 """)
+            Text(item.description)
             
             Spacer()
             
@@ -43,10 +56,10 @@ struct ProductDetailView: View {
             } label: {
                 Text("Add to Bag")
                     .font(.title2)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primary)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(.black)
+                    .background(Color.secondary)
                     .clipShape(Capsule())
             }
             
@@ -54,11 +67,11 @@ struct ProductDetailView: View {
         }
         .padding(.horizontal)
         
-//        .navigationTitle("Chandbali")
+        .navigationTitle(item.name)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 #Preview {
-    ProductDetailView()
+    ProductDetailView(item: Product())
 }

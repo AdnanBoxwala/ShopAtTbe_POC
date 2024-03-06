@@ -26,7 +26,7 @@ struct AddInventoryItemView: View {
                         }
                     }
                     
-                    TextField("Product ID", text: $viewModel.product.id)
+                    TextField("Product ID", text: $viewModel.product.productId)
                         .focused($editorIsFocussed)
                         .textInputAutocapitalization(.characters)
                 } header: {
@@ -58,6 +58,8 @@ struct AddInventoryItemView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(0..<viewModel.selectedImages.count, id: \.self) { idx in
+                                // TODO:
+                                // index out of range error.
                                 viewModel.selectedImages[idx]
                                     .resizable()
                                     .scaledToFill()

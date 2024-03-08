@@ -29,11 +29,12 @@ struct AddInventoryItemView: View {
                     TextField("Product ID", text: $viewModel.product.productId)
                         .focused($editorIsFocussed)
                         .textInputAutocapitalization(.characters)
+                        .autocorrectionDisabled()
                 } header: {
                     Text("Product details")
                 }
                 
-                TextField("Price", value: $viewModel.product.price, format: Product.currencyFormat)
+                TextField("Price", value: $viewModel.product.price, formatter: Product.currencyFormatter)
                     .keyboardType(.decimalPad)
                     .focused($editorIsFocussed)
                 
@@ -85,7 +86,7 @@ struct AddInventoryItemView: View {
                 }
             }
             
-            ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
                 Button("Upload") {
                     // save to iCloud
                     viewModel.saveToCloud()

@@ -10,7 +10,18 @@ import UIKit
 import Foundation
 
 struct Product: Identifiable {
-    static let currencyFormat = FloatingPointFormatStyle<Double>.Currency(code: "AED", locale: Locale(identifier: "en_US"))
+//    Below currency formatter is still beta version
+//    static let currencyFormat = FloatingPointFormatStyle<Double>.Currency(code: "AED", locale: Locale(identifier: "en_US"))
+    
+    static var currencyFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.currencyCode = "AED"
+        formatter.maximumFractionDigits = 2
+        formatter.groupingSeparator = "."
+        formatter.usesGroupingSeparator = true
+        return formatter
+    }
     
     let id = UUID()
     var name: String = ""

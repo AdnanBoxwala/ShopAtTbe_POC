@@ -17,6 +17,9 @@ extension AddInventoryItemView {
         private var container: CKContainer
         private var assetUrls: [URL] = []
         
+        private(set) var isUploading = false
+        private(set) var isUploaded = false
+        
         var product = Product()
         
         var photoPickerItems: [PhotosPickerItem] = [] {
@@ -32,23 +35,14 @@ extension AddInventoryItemView {
             }
         }
         
-        private var imageData: [Data] = [] {
+        private(set) var imageData: [Data] = [] {
             didSet {
                 Task {
                     populateProductAssets()
-                    
-                    selectedImages.removeAll()
-                    for data in imageData {
-                        if let uiImage = UIImage(data: data) {
-                            selectedImages.append(Image(uiImage: uiImage))
-                        }
-                    }
                 }
             }
         }
-        
-        private(set) var selectedImages: [Image] = []
-        
+                
         init() {
             let newContainer = CKContainer(identifier: "iCloud.com.github.AdnanBox.ShopAtTBE")
             self.container = newContainer
@@ -56,6 +50,8 @@ extension AddInventoryItemView {
         }
         
         func saveToCloud() {
+            isUploaded = false
+            isUploading = true
             let record = CKRecord(recordType: RecordType.product.rawValue)
             record.setValuesForKeys(product.toDictionary())
             
@@ -65,16 +61,19 @@ extension AddInventoryItemView {
                     print(error.localizedDescription)
                 } else {
                     if let _ = newRecord {
-                        self.clearAll()
+                        self.isUploading = false
+                        self.isUploaded = true
+                        self.clearAllResources()
+                        
                         print("saved")
                     }
                 }
             }
         }
         
-        private func clearAll() {
+        private func clearAllResources() {
             product = Product()
-            releaseResources()
+            releaseImageResources()
         }
         
         private func populateProductAssets() {
@@ -91,7 +90,7 @@ extension AddInventoryItemView {
             }
         }
         
-        private func releaseResources() {
+        private func releaseImageResources() {
             photoPickerItems.removeAll()
             
             for url in assetUrls {

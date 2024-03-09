@@ -13,7 +13,7 @@ struct AddInventoryItemView: View {
     @State private var viewModel = ViewModel()
         
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             Form {
                 Section {
                     TextField("Name", text: $viewModel.product.name)
@@ -58,22 +58,31 @@ struct AddInventoryItemView: View {
                     PhotosPicker("Search in Photos", selection: $viewModel.photoPickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .screenshots]))
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach(0..<viewModel.selectedImages.count, id: \.self) { idx in
-                                // TODO:
-                                // index out of range error.
-                                viewModel.selectedImages[idx]
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 75, height: 75)
-                                    .clipped()
+                            ForEach(viewModel.imageData, id: \.self) { data in
+                                if let uiImage = UIImage(data: data) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 75, height: 75)
+                                        .clipped()
+                                }
                             }
-                            .disabled(viewModel.selectedImages.count == 0)
+                            .disabled(viewModel.imageData.isEmpty)
                         }
                     }
                 } header: {
                     Text("Add images or videos")
                 }
                 .listRowSeparator(.hidden)
+            }
+            .opacity((viewModel.isUploading) ? 0.5 : 1)
+            
+            if viewModel.isUploading {
+                ProgressView("Uploading your product")
+            }
+            
+            if viewModel.isUploaded {
+                UploadSuccessView()
             }
         }
         .navigationTitle("New Product")
@@ -89,7 +98,9 @@ struct AddInventoryItemView: View {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button("Upload") {
                     // save to iCloud
-                    viewModel.saveToCloud()
+                    Task {
+                        viewModel.saveToCloud()
+                    }
                 }
                 .disabled(viewModel.product.isEntryValid)
             }

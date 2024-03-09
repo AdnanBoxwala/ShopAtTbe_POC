@@ -12,7 +12,6 @@ struct ShopAtTBEApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView()
-//                .environment(\.locale, Locale(identifier: "en_US"))
             UpdateInventoryView()
         }
     }

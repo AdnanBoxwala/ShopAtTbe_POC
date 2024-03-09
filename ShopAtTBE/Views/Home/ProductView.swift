@@ -14,6 +14,7 @@ struct ProductView: View {
     let price: Double
     
     var body: some View {
+        // TODO: not aligned if product name different in size
         VStack {
             Image(uiImage: image)
                 .resizable()

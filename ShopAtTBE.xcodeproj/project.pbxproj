@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */; };
 		873E408A2B7D4AD400158507 /* ShopAtTBEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E40892B7D4AD400158507 /* ShopAtTBEApp.swift */; };
 		873E408C2B7D4AD400158507 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E408B2B7D4AD400158507 /* ContentView.swift */; };
 		873E408E2B7D4AE100158507 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 873E408D2B7D4AE100158507 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessView.swift; sourceTree = "<group>"; };
 		873E40862B7D4AD400158507 /* ShopAtTBE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopAtTBE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		873E40892B7D4AD400158507 /* ShopAtTBEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAtTBEApp.swift; sourceTree = "<group>"; };
 		873E408B2B7D4AD400158507 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				876826252B8A46B5004C5EC0 /* UpdateInventoryView.swift */,
 				876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */,
 				876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */,
+				8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				8768262A2B8A4A08004C5EC0 /* UpdateInventoryItemView.swift in Sources */,
 				873E409B2B7D4ECA00158507 /* ProductView.swift in Sources */,
 				873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */,
+				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
 				876826262B8A46B5004C5EC0 /* UpdateInventoryView.swift in Sources */,
 				873E409F2B7D57F300158507 /* CheckoutView.swift in Sources */,
 				873E40992B7D4CAD00158507 /* HomeView.swift in Sources */,

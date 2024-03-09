@@ -18,6 +18,7 @@ struct ProductDetailView: View {
             GeometryReader { proxy in
                 ScrollView(.horizontal, showsIndicators: true) {
                     HStack {
+                        // TODO: image size appear different for different produts based on resolution
                         ForEach(item.images, id: \.self) { uiimage in
                             NavigationLink {
                                 // TODO:

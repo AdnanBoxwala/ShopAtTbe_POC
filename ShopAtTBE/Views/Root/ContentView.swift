@@ -9,12 +9,25 @@ import CloudKit
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        TabView {
-            HomeView()
-                .tabItem { Label("T.B.E", systemImage: "house") }
-            CheckoutView()
-                .tabItem { Label("Bag", systemImage: "handbag.fill") }
+    @EnvironmentObject var dummyUser: User
+    
+    var body: some View {        
+        if dummyUser.role == .admin {
+            TabView {
+                HomeView()
+                    .tabItem { Label("T.B.E", systemImage: "house") }
+                UpdateInventoryView()
+                    .tabItem { Label("Update Inventory", systemImage: "archivebox.fill")}
+            }
+        } else if dummyUser.role == .customer {
+            TabView {
+                HomeView()
+                    .tabItem { Label("T.B.E", systemImage: "house") }
+                CheckoutView()
+                    .tabItem { Label("Bag", systemImage: "handbag.fill") }
+                UserProfileView()
+                    .tabItem { Label("Profile", systemImage: "person.circle.fill") }
+            }
         }
     }
 }

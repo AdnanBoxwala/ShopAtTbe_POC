@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */; };
+		8711485F2B9CE533005C53F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485E2B9CE533005C53F5 /* User.swift */; };
+		871148612B9CE5B5005C53F5 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148602B9CE5B5005C53F5 /* UserRole.swift */; };
+		871148642B9CF362005C53F5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148632B9CF362005C53F5 /* LoginView.swift */; };
+		871148662B9CF36A005C53F5 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148652B9CF36A005C53F5 /* RegistrationView.swift */; };
+		8711486D2B9DB481005C53F5 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711486C2B9DB481005C53F5 /* UserProfileView.swift */; };
 		873E408A2B7D4AD400158507 /* ShopAtTBEApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E40892B7D4AD400158507 /* ShopAtTBEApp.swift */; };
 		873E408C2B7D4AD400158507 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E408B2B7D4AD400158507 /* ContentView.swift */; };
 		873E408E2B7D4AE100158507 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 873E408D2B7D4AE100158507 /* Assets.xcassets */; };
@@ -28,6 +33,11 @@
 
 /* Begin PBXFileReference section */
 		8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessView.swift; sourceTree = "<group>"; };
+		8711485E2B9CE533005C53F5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		871148602B9CE5B5005C53F5 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
+		871148632B9CF362005C53F5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		871148652B9CF36A005C53F5 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		8711486C2B9DB481005C53F5 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		873E40862B7D4AD400158507 /* ShopAtTBE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopAtTBE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		873E40892B7D4AD400158507 /* ShopAtTBEApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopAtTBEApp.swift; sourceTree = "<group>"; };
 		873E408B2B7D4AD400158507 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -59,6 +69,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		871148622B9CF350005C53F5 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				871148632B9CF362005C53F5 /* LoginView.swift */,
+				871148652B9CF36A005C53F5 /* RegistrationView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		8711486B2B9DB469005C53F5 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8711486C2B9DB481005C53F5 /* UserProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		873E407D2B7D4AD400158507 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +129,8 @@
 		873E40972B7D4C9800158507 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8711486B2B9DB469005C53F5 /* Profile */,
+				871148622B9CF350005C53F5 /* Authentication */,
 				876826242B8A4699004C5EC0 /* Admin */,
 				876826372B8D322D004C5EC0 /* Checkout */,
 				876826352B8D31F3004C5EC0 /* Home */,
@@ -114,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				873E40C22B8675B200158507 /* Product.swift */,
+				8711485E2B9CE533005C53F5 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +222,7 @@
 			children = (
 				8768263C2B97BBC9004C5EC0 /* RecordType.swift */,
 				8768263E2B97BE67004C5EC0 /* JewelleryType.swift */,
+				871148602B9CE5B5005C53F5 /* UserRole.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -269,13 +300,18 @@
 				8768262F2B8AAEC0004C5EC0 /* AddInventoryItemView-ViewModel.swift in Sources */,
 				8768262A2B8A4A08004C5EC0 /* UpdateInventoryItemView.swift in Sources */,
 				873E409B2B7D4ECA00158507 /* ProductView.swift in Sources */,
+				871148612B9CE5B5005C53F5 /* UserRole.swift in Sources */,
 				873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */,
+				8711485F2B9CE533005C53F5 /* User.swift in Sources */,
+				8711486D2B9DB481005C53F5 /* UserProfileView.swift in Sources */,
 				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
 				876826262B8A46B5004C5EC0 /* UpdateInventoryView.swift in Sources */,
 				873E409F2B7D57F300158507 /* CheckoutView.swift in Sources */,
 				873E40992B7D4CAD00158507 /* HomeView.swift in Sources */,
 				8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */,
 				873E408C2B7D4AD400158507 /* ContentView.swift in Sources */,
+				871148642B9CF362005C53F5 /* LoginView.swift in Sources */,
+				871148662B9CF36A005C53F5 /* RegistrationView.swift in Sources */,
 				8768263A2B97B9FE004C5EC0 /* HomeView-ViewModel.swift in Sources */,
 				873E408A2B7D4AD400158507 /* ShopAtTBEApp.swift in Sources */,
 				873E40C32B8675B200158507 /* Product.swift in Sources */,

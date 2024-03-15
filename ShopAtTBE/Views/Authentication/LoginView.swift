@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Environment(AuthViewModel.self) var authViewModel
+    
     @State private var emailId: String = ""
     @State private var password: String = ""
     
     @State private var showPassword: Bool = false
     
+    // TODO: use switch case here
     var body: some View {
         NavigationStack {
             VStack(spacing: 30) {
@@ -46,8 +49,9 @@ struct LoginView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 
                 Button {
-                    // authenticate user with firebase database
-                    print("button pressed")
+                    Task {
+                        try await authViewModel.signIn(withEmail: emailId, password: password)
+                    }
                 } label: {
                     HStack {
                         Text("SIGN IN")

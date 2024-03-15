@@ -14,7 +14,7 @@ struct UpdateInventoryView: View {
                 NavigationLink {
                     AddInventoryItemView()
                 } label: {
-                    Label("Add new product", systemImage: "plus.circle")
+                    Label("Add item", systemImage: "plus.circle")
                         .font(.title)
                         .foregroundStyle(Color.primary)
                         .padding()
@@ -26,9 +26,7 @@ struct UpdateInventoryView: View {
                 NavigationLink {
                     UpdateInventoryItemView()
                 } label: {
-                    // TODO:
-                    // button goes on two lines in smaller phone
-                    Label("Update existing product", systemImage: "goforward.plus")
+                    Label("Update item", systemImage: "goforward.plus")
                         .font(.title)
                         .foregroundStyle(Color.primary)
                         .padding()

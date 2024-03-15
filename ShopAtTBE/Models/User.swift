@@ -7,16 +7,15 @@
 
 import Foundation
 
-@Observable
-class User: Identifiable, ObservableObject {
-    let id: UUID
+struct User: Identifiable, Codable {
+    var id: String
     var firstName: String
     var lastName: String
     var dateOfBirth: Date
     var emailId: String
     var role: UserRole
     
-    init(id: UUID, firstName: String, lastName: String, dateOfBirth: Date, emailId: String, role: UserRole) {
+    init(id: String, firstName: String, lastName: String, dateOfBirth: Date, emailId: String, role: UserRole) {
         self.id = id
         self.firstName = firstName
         self.lastName = lastName

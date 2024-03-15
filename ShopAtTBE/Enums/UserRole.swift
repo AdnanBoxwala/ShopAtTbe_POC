@@ -7,10 +7,8 @@
 
 import Foundation
 
-enum UserRole {
+enum UserRole: String, Codable {
     case admin
-//    case manager
-//    case developer
     case customer
-//    case guest
 }
+        

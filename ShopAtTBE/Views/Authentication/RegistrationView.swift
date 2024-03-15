@@ -7,17 +7,22 @@
 
 import SwiftUI
 
+// TODO: focusstate for login and registration view
+// TODO: automatically go to next field
+
 struct RegistrationView: View {
+    @Environment(AuthViewModel.self) var authViewModel
+    @Environment(\.dismiss) var dismiss
+    
     @State private var firstName: String = ""
     @State private var lastName: String = ""
-    @State private var dateofBirth: Date = .now
+    @State private var dateOfBirth: Date = .now
     @State private var emailId: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     
     @State private var showPassword: Bool = false
-    @Environment(\.dismiss) var dismiss
-        
+    
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
         let startComponents = DateComponents(year: Calendar.current.component(.year, from: Date.now) - 100, month: 1, day: 1)
@@ -37,7 +42,7 @@ struct RegistrationView: View {
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.words)
                         
-                        DatePicker("Date of Birth", selection: $dateofBirth, in: dateRange, displayedComponents: [.date])
+                        DatePicker("Date of Birth", selection: $dateOfBirth, in: dateRange, displayedComponents: [.date])
                             .datePickerStyle(.compact)
                     } header: {
                         Text("Personal details")
@@ -72,8 +77,9 @@ struct RegistrationView: View {
                     
                     Section {
                         Button {
-                            // register user in firebase
-                            print("button pressed")
+                            Task {
+                                try await authViewModel.createUser(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, withEmail: emailId, password: password)
+                            }
                         } label: {
                             HStack {
                                 Text("SIGN UP")

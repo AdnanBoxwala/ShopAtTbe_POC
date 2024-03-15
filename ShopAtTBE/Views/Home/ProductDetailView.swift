@@ -9,17 +9,15 @@ import SwiftUI
 
 struct ProductDetailView: View {
     let item: Product
-    
+        
     var body: some View {
         // TODO:
-        // add everything in a vertical scrollview
         // zstack with add to bucket button on top
-        VStack(alignment: .leading) {
-            GeometryReader { proxy in
-                ScrollView(.horizontal, showsIndicators: true) {
-                    HStack {
-                        // TODO: image size appear different for different produts based on resolution
-                        ForEach(item.images, id: \.self) { uiimage in
+        GeometryReader { proxy in
+            ScrollView(.vertical) {
+                TabView {
+                    ForEach(item.images, id: \.self) { uiimage in
+                        ZStack {
                             NavigationLink {
                                 // TODO:
                                 // allow zoom
@@ -33,43 +31,43 @@ struct ProductDetailView: View {
                                 Image(uiImage: uiimage)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(maxWidth: .infinity, maxHeight: proxy.size.height)
                             }
                         }
                     }
                 }
+                .frame(minHeight: proxy.size.height * 0.5)
+                .tabViewStyle(.page)
+                .indexViewStyle(.page(backgroundDisplayMode: .interactive))
+                
+                VStack(alignment: .leading) {
+                    
+                    Text(item.category.rawValue)
+                        .font(.headline)
+                    Text(item.name)
+                        .font(.title)
+                    Text(item.price, format: .currency(code: "AED"))
+                        .font(.title3)
+                    
+                    
+                    Text(item.description)
+                }
+                
+                Button {
+                    // add product to bag
+                } label: {
+                    Text("Add to Bag")
+                        .font(.title2)
+                        .foregroundStyle(Color.primary)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.secondary)
+                        .clipShape(Capsule())
+                }
             }
-            
-            Text(item.type.rawValue)
-                .font(.headline)
-            Text(item.name)
-                .font(.title)
-            Text(item.price, format: .currency(code: "AED"))
-                .font(.title3)
-            
-            
-            Text(item.description)
-            
-            Spacer()
-            
-            Button {
-                // add product to bag
-            } label: {
-                Text("Add to Bag")
-                    .font(.title2)
-                    .foregroundStyle(Color.primary)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.secondary)
-                    .clipShape(Capsule())
-            }
-            
-            Spacer()
+            .padding(.horizontal)
+            .navigationTitle(item.name)
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding(.horizontal)
-        
-        .navigationTitle(item.name)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

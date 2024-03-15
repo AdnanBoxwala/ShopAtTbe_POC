@@ -20,7 +20,7 @@ struct AddInventoryItemView: View {
                         .focused($editorIsFocussed)
                         .textInputAutocapitalization(.words)
                     
-                    Picker("Jewellery type", selection: $viewModel.product.type) {
+                    Picker("Jewellery type", selection: $viewModel.product.category) {
                         ForEach(JewelleryType.allCases, id: \.self) {
                             Text($0.rawValue)
                         }

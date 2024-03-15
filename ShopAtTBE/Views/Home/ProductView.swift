@@ -14,20 +14,24 @@ struct ProductView: View {
     let price: Double
     
     var body: some View {
-        // TODO: not aligned if product name different in size
-        VStack {
+        VStack(alignment: .leading) {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 150, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 25.0))
-            
-            Text(name)
-                .font(.headline)
-                .foregroundStyle(Color.primary)
-            Text(price.formatted(.currency(code: "AED")))
-                .font(.caption)
-                .foregroundStyle(Color.primary)
+                .clipped()
+                
+            VStack(alignment: .leading) {
+                Text(name)
+                    .multilineTextAlignment(.leading)
+                    .font(.headline)
+                    .foregroundStyle(Color.primary)
+                Text(price.formatted(.currency(code: "AED")))
+                    .font(.caption)
+                    .foregroundStyle(Color.primary)
+            }
+            .padding(.horizontal)
+
         }
     }
 }

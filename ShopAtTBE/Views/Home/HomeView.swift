@@ -34,14 +34,18 @@ struct HomeView: View {
                             NavigationLink {
                                 ProductDetailView(item: item)
                             } label: {
-                                ProductView(
-                                    image: item.displayImage,
-                                    name: item.name,
-                                    price: item.price)
+                                VStack{
+                                    ProductView(
+                                        image: item.displayImage,
+                                        name: item.name,
+                                        price: item.price)
+                                    Spacer()
+                                }
                             }
                         }
                     }
                 }
+                .padding(.horizontal)
             }
             .navigationTitle("The Butterfly Effect")
             .onAppear(perform: viewModel.getAllItems)

@@ -30,7 +30,7 @@ struct Product: Identifiable {
     var description: String = ""
     var productId: String = ""
     var quantity: Int = 1
-    var type: JewelleryType = .ring
+    var category: JewelleryType = .ring
     
     func toDictionary() -> [String: Any] {
         return [
@@ -40,7 +40,7 @@ struct Product: Identifiable {
             "description": description,
             "productId": productId,
             "quantity": quantity,
-            "type": type.rawValue
+            "type": category.rawValue
         ]
     }
     
@@ -60,7 +60,7 @@ struct Product: Identifiable {
             return nil
         }
         
-        return Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, type: JewelleryType(rawValue: type)!)
+        return Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: type)!)
     }
     
     var displayImage: UIImage {

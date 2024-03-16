@@ -11,8 +11,11 @@ struct ContentView: View {
     @Environment(AuthViewModel.self) var authViewModel
     
     var body: some View {
-        if let currentUser = authViewModel.currentUser {
-            switch currentUser.role {
+        switch authViewModel.loggedInUser!.isAnonymous {
+        case true:
+            CustomerView()
+        case false:
+            switch authViewModel.currentUser!.role {
             case .admin:
                 AdminView()
             case .customer:

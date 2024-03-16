@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8709F8742BA4F14F000CCA81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8709F8732BA4F14F000CCA81 /* GoogleService-Info.plist */; };
+		8709F87A2BA5B458000CCA81 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F8792BA5B458000CCA81 /* Color-Theme.swift */; };
+		8709F8832BA5DCE6000CCA81 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F8822BA5DCE6000CCA81 /* GuestView.swift */; };
 		8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */; };
 		8711485F2B9CE533005C53F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485E2B9CE533005C53F5 /* User.swift */; };
 		871148612B9CE5B5005C53F5 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148602B9CE5B5005C53F5 /* UserRole.swift */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		8709F8732BA4F14F000CCA81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "ShopAtTBE/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8709F8792BA5B458000CCA81 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color-Theme.swift"; path = "ShopAtTBE/Views/Authentication/Color-Theme.swift"; sourceTree = SOURCE_ROOT; };
+		8709F8822BA5DCE6000CCA81 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
 		8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessView.swift; sourceTree = "<group>"; };
 		8711485E2B9CE533005C53F5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		871148602B9CE5B5005C53F5 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 			children = (
 				871148632B9CF362005C53F5 /* LoginView.swift */,
 				871148652B9CF36A005C53F5 /* RegistrationView.swift */,
+				8709F8822BA5DCE6000CCA81 /* GuestView.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 		876826302B8ABD37004C5EC0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8709F8792BA5B458000CCA81 /* Color-Theme.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -343,12 +349,14 @@
 				873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */,
 				8711485F2B9CE533005C53F5 /* User.swift in Sources */,
 				8711486D2B9DB481005C53F5 /* UserProfileView.swift in Sources */,
+				8709F8832BA5DCE6000CCA81 /* GuestView.swift in Sources */,
 				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
 				876826262B8A46B5004C5EC0 /* UpdateInventoryView.swift in Sources */,
 				873E409F2B7D57F300158507 /* CheckoutView.swift in Sources */,
 				873E40992B7D4CAD00158507 /* HomeView.swift in Sources */,
 				8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */,
 				871148812BA0B68F005C53F5 /* ContentView.swift in Sources */,
+				8709F87A2BA5B458000CCA81 /* Color-Theme.swift in Sources */,
 				873E408C2B7D4AD400158507 /* RootView.swift in Sources */,
 				871148642B9CF362005C53F5 /* LoginView.swift in Sources */,
 				871148662B9CF36A005C53F5 /* RegistrationView.swift in Sources */,

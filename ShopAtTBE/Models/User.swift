@@ -15,6 +15,9 @@ struct User: Identifiable, Codable {
     var emailId: String
     var role: UserRole
     
+//    TODO: add orders to user data. need to also be codable
+//    var orders: [Product] = []
+    
     init(id: String, firstName: String, lastName: String, dateOfBirth: Date, emailId: String, role: UserRole) {
         self.id = id
         self.firstName = firstName
@@ -22,5 +25,9 @@ struct User: Identifiable, Codable {
         self.dateOfBirth = dateOfBirth
         self.emailId = emailId
         self.role = role
+    }
+    
+    var initials: String {
+        "\(firstName.first!)\(lastName.first!)"
     }
 }

@@ -14,6 +14,7 @@ struct LoginView: View {
     @State private var password: String = ""
     
     @State private var showPassword: Bool = false
+    @State private var showingRegistration: Bool = false
     
     // TODO: use switch case here
     var body: some View {
@@ -67,9 +68,8 @@ struct LoginView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
                 
-                NavigationLink {
-                    RegistrationView()
-                        .navigationBarBackButtonHidden()
+                Button {
+                    showingRegistration = true
                 } label: {
                     HStack(spacing: 2) {
                         Text("Dont have an Account?")
@@ -77,13 +77,27 @@ struct LoginView: View {
                             .fontWeight(.bold)
                     }
                 }
+                
+                Button {
+                    authViewModel.signInAsGuest()
+                } label: {
+                    HStack(spacing: 2) {
+                        Text("Continue as ")
+                        Text("Guest")
+                            .fontWeight(.bold)
+                    }
+                }
             }
             .navigationTitle("The Butterfly Effect")
             .padding(.horizontal)
+            .sheet(isPresented: $showingRegistration) {
+                RegistrationView()
+            }
         }
     }
 }
 
 #Preview {
     LoginView()
+        .environment(AuthViewModel())
 }

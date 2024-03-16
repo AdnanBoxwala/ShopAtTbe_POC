@@ -131,4 +131,5 @@ struct RegistrationView: View {
 
 #Preview {
     RegistrationView()
+        .environment(AuthViewModel())
 }

@@ -31,6 +31,20 @@ class AuthViewModel {
         }
     }
     
+    func signInAsGuest() {
+        Auth.auth().signInAnonymously { result, error in
+            guard let result = result else {
+                if let error = error {
+                    print("DEBUG: Could not sign in as guest: \(error.localizedDescription)")
+                }
+                return
+            }
+            
+            self.loggedInUser = result.user
+            self.currentUser = User(id: result.user.uid, firstName: "No", lastName: "Name", dateOfBirth: .now, emailId: "anonymous", role: .customer)
+        }
+    }
+    
     func createUser(firstName: String, lastName:String, dateOfBirth: Date, withEmail email: String, password: String) async throws {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
@@ -62,7 +76,13 @@ class AuthViewModel {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
-        self.currentUser = try? snapshot.data(as: User.self)
+        
+        do {
+            self.currentUser = try snapshot.data(as: User.self)
+        } catch {
+            self.currentUser = User(id: "\(UUID())", firstName: "Anonymous", lastName: "User", dateOfBirth: .now, emailId: "anonymous", role: .customer)
+        }
+        
         
         print("DEBUG: Current user is \(String(describing: self.currentUser?.firstName)) \(String(describing: self.currentUser?.lastName))")
     }

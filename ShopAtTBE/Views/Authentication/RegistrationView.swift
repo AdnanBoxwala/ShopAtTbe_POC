@@ -96,35 +96,42 @@ struct RegistrationView: View {
                 }
                 
                 
-                Spacer()
-                HStack {
-                    
-                    Button {
-                        dismiss()
-                    } label: {
-                        VStack(spacing: 2) {
-                            Text("Already a user?")
-                            Text("Sign in")
-                                .fontWeight(.bold)
-                        }
-                    }
-                    
-                    Spacer()
-                    Button {
-                        // add functionality to switch to guest view
-                    } label: {
-                        VStack(spacing: 2) {
-                            Text("Guest\nAccess")
-                                .fontWeight(.bold)
-                        }
-                    }
-                }
-                .padding()
+//                Spacer()
+//                HStack {
+//                    
+//                    Button {
+//                        dismiss()
+//                    } label: {
+//                        VStack(spacing: 2) {
+//                            Text("Already a user?")
+//                            Text("Sign in")
+//                                .fontWeight(.bold)
+//                        }
+//                    }
+//                    
+//                    Spacer()
+//                    Button {
+//                        // add functionality to switch to guest view
+//                    } label: {
+//                        VStack(spacing: 2) {
+//                            Text("Guest\nAccess")
+//                                .fontWeight(.bold)
+//                        }
+//                    }
+//                }
+//                .padding()
                 
-                Spacer()
+//                Spacer()
             }
             .navigationTitle("Registration")
 //            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Button("Cancel", role: .cancel) {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }

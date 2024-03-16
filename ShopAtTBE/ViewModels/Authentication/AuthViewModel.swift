@@ -75,12 +75,12 @@ class AuthViewModel {
     func fetchUser() async {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else { return }
+        let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument()
         
         do {
-            self.currentUser = try snapshot.data(as: User.self)
+            self.currentUser = try snapshot?.data(as: User.self)
         } catch {
-            self.currentUser = User(id: "\(UUID())", firstName: "Anonymous", lastName: "User", dateOfBirth: .now, emailId: "anonymous", role: .customer)
+            self.currentUser = User(id: "\(UUID())", firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "anonymous", role: .customer)
         }
         
         

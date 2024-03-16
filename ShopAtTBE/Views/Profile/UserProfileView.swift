@@ -21,33 +21,56 @@ struct UserProfileView: View {
                             .background(Color.secondary)
                             .clipShape(Circle())
                         
-                        Text("\(authViewModel.currentUser!.firstName) \(authViewModel.currentUser!.lastName)")
+                        Text("\(authViewModel.currentUser!.firstName.uppercased()) \(authViewModel.currentUser!.lastName.uppercased())")
                         
                         if !authViewModel.loggedInUser!.isAnonymous {
-                            Button("Sign Out", role: .destructive) {
-                                authViewModel.signOut()
+                            VStack {
+                                Spacer()
+                                HStack(alignment: .bottom) {
+                                    Button {
+                                        print("show users orders")
+                                    } label: {
+                                        VStack {
+                                            Image(systemName: "archivebox.fill")
+                                                .font(.title)
+                                            Text("Orders")
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                    
+                                    Divider()
+                                        .frame(height: 50)
+                                    
+                                    Button {
+                                        print("show users details")
+                                    } label: {
+                                        VStack {
+                                            Image(systemName: "pencil.and.list.clipboard")
+                                                .font(.title)
+                                            Text("Details")
+                                                .padding(.horizontal)
+                                        }
+                                    }
+                                }
+                                Spacer()
+                                Button(role: .destructive) {
+                                    authViewModel.signOut()
+                                } label: {
+                                    Text("Log Out")
+                                        .padding()
+                                }
                             }
                         } else {
-                            NavigationLink {
-                                LoginView()
-                            } label: {
-                                Text("Sign In")
+                            VStack {
+                                Spacer()
+                                
+                                NavigationLink {
+                                    LoginView()
+                                } label: {
+                                    Text("Sign In with Email")
+                                        .foregroundStyle(.primary)
+                                }
                             }
-                        }
-                    }
-                    
-                    if !authViewModel.loggedInUser!.isAnonymous {
-                        HStack {
-                            Button {
-                                print("show users orders")
-                            } label: {
-                                Text("See orders")
-                                    .foregroundStyle(Color.white)
-                                    .padding()
-                                    .background(.blue)
-                                    .clipShape(Capsule())
-                            }
-                            Spacer()
                         }
                     }
                 }

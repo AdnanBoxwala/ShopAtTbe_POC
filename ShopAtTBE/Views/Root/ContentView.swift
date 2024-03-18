@@ -16,8 +16,8 @@ struct ContentView: View {
             case true:
                 CustomerView()
             case false:
-                if authViewModel.currentUser != nil {
-                    switch authViewModel.currentUser!.role {
+                if authViewModel.butterflyEffectUser != nil {
+                    switch authViewModel.butterflyEffectUser!.role {
                     case .admin:
                         AdminView()
                     case .customer:

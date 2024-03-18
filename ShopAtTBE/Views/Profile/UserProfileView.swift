@@ -13,15 +13,15 @@ struct UserProfileView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                if authViewModel.loggedInUser != nil && authViewModel.currentUser != nil {
+                if authViewModel.loggedInUser != nil && authViewModel.butterflyEffectUser != nil {
                     VStack(spacing: 10) {
-                        Text(authViewModel.currentUser!.initials)
+                        Text(authViewModel.butterflyEffectUser!.initials)
                             .font(.title)
                             .padding()
                             .background(Color.secondary)
                             .clipShape(Circle())
                         
-                        Text("\(authViewModel.currentUser!.firstName.uppercased()) \(authViewModel.currentUser!.lastName.uppercased())")
+                        Text("\(authViewModel.butterflyEffectUser!.firstName.uppercased()) \(authViewModel.butterflyEffectUser!.lastName.uppercased())")
                         
                         if !authViewModel.loggedInUser!.isAnonymous {
                             VStack {

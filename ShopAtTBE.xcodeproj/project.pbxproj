@@ -89,6 +89,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8709F8862BA8DAB1000CCA81 /* ButterflyEffect */ = {
+			isa = PBXGroup;
+			children = (
+				873E40C22B8675B200158507 /* Product.swift */,
+				8711485E2B9CE533005C53F5 /* User.swift */,
+			);
+			path = ButterflyEffect;
+			sourceTree = "<group>";
+		};
 		871148622B9CF350005C53F5 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,8 +181,7 @@
 		873E40C12B86759F00158507 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				873E40C22B8675B200158507 /* Product.swift */,
-				8711485E2B9CE533005C53F5 /* User.swift */,
+				8709F8862BA8DAB1000CCA81 /* ButterflyEffect */,
 			);
 			path = Models;
 			sourceTree = "<group>";

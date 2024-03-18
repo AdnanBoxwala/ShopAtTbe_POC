@@ -40,7 +40,7 @@ struct Product: Identifiable {
             "description": description,
             "productId": productId,
             "quantity": quantity,
-            "type": category.rawValue
+            "category": category.rawValue
         ]
     }
     
@@ -55,12 +55,12 @@ struct Product: Identifiable {
               let description = record.value(forKey: "description") as? String,
               let productId = record.value(forKey: "productId") as? String,
               let quantity = record.value(forKey: "quantity") as? Int,
-              let type = record.value(forKey: "type") as? String
+              let category = record.value(forKey: "category") as? String
         else {
             return nil
         }
         
-        return Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: type)!)
+        return Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: category)!)
     }
     
     var displayImage: UIImage {

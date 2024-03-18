@@ -9,10 +9,10 @@ import Firebase
 import FirebaseFirestoreSwift
 import Foundation
 
-@Observable
-class AuthViewModel {
+//@MainActor
+@Observable class AuthViewModel {
     var loggedInUser: FirebaseAuth.User?
-    var currentUser: User?
+    var butterflyEffectUser: ButterflyEffect.User?
     
     init() {
         self.loggedInUser = Auth.auth().currentUser
@@ -41,7 +41,7 @@ class AuthViewModel {
             }
             
             self.loggedInUser = result.user
-            self.currentUser = User(id: result.user.uid, firstName: "No", lastName: "Name", dateOfBirth: .now, emailId: "anonymous", role: .customer)
+            self.butterflyEffectUser = ButterflyEffect.User(id: result.user.uid, firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "anonymous", role: .customer, orderHistory: [], basket: [])
         }
     }
     
@@ -49,7 +49,7 @@ class AuthViewModel {
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.loggedInUser = result.user
-            let user = User(id: result.user.uid, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, emailId: email, role: .customer)
+            let user = ButterflyEffect.User(id: result.user.uid, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, emailId: email, role: .customer, orderHistory: [], basket: [])
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             await fetchUser()
@@ -62,7 +62,7 @@ class AuthViewModel {
         do {
             try Auth.auth().signOut()
             self.loggedInUser = nil
-            self.currentUser = nil
+            self.butterflyEffectUser = nil
         } catch {
             print("DEBUG: Failed to sign out with error: \(error.localizedDescription)")
         }
@@ -73,17 +73,16 @@ class AuthViewModel {
     }
     
     func fetchUser() async {
+        
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument()
-        
-        do {
-            self.currentUser = try snapshot?.data(as: User.self)
-        } catch {
-            self.currentUser = User(id: "\(UUID())", firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "anonymous", role: .customer)
+        guard let snapshot = try? await Firestore.firestore().collection("users").document(uid).getDocument() else {
+            self.loggedInUser = nil
+            return
         }
         
+        self.butterflyEffectUser = try? snapshot.data(as: ButterflyEffect.User.self)
         
-        print("DEBUG: Current user is \(String(describing: self.currentUser?.firstName)) \(String(describing: self.currentUser?.lastName))")
+        print("DEBUG: Current user is \(String(describing: self.butterflyEffectUser?.firstName)) \(String(describing: self.butterflyEffectUser?.lastName))")
     }
 }

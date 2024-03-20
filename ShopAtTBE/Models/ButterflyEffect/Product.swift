@@ -9,20 +9,7 @@ import CloudKit
 import UIKit
 import Foundation
 
-struct Product: Identifiable {
-//    Below currency formatter is still beta version
-//    static let currencyFormat = FloatingPointFormatStyle<Double>.Currency(code: "AED", locale: Locale(identifier: "en_US"))
-    
-    static var currencyFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = "AED"
-        formatter.maximumFractionDigits = 2
-        formatter.groupingSeparator = "."
-        formatter.usesGroupingSeparator = true
-        return formatter
-    }
-    
+struct Product: Identifiable {    
     let id = UUID()
     var name: String = ""
     var price: Double = 0.0
@@ -63,15 +50,11 @@ struct Product: Identifiable {
         return Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: category)!)
     }
     
-    var displayImage: UIImage {
-        guard let url = assets.first?.fileURL else {
-            return UIImage(named: "Chandbali_1")!
-        }
-        guard let data = try? Data(contentsOf: url) else {
-            return UIImage(named: "Chandbali_1")!
-        }
+    var displayImage: UIImage? {
+        guard let url = assets.first?.fileURL else { return nil }
+        guard let data = try? Data(contentsOf: url) else { return nil }
         
-        return UIImage(data: data)!
+        return UIImage(data: data)
     }
     
     var images: [UIImage] {

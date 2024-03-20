@@ -11,20 +11,15 @@ struct ContentView: View {
     @Environment(AuthViewModel.self) var authViewModel
     
     var body: some View {
-        if authViewModel.loggedInUser != nil {
-            switch authViewModel.loggedInUser!.isAnonymous {
-            case true:
+        if authViewModel.butterflyEffectUser != nil {
+            switch authViewModel.butterflyEffectUser!.role {
+            case .admin:
+                AdminView()
+            case .customer:
                 CustomerView()
-            case false:
-                if authViewModel.butterflyEffectUser != nil {
-                    switch authViewModel.butterflyEffectUser!.role {
-                    case .admin:
-                        AdminView()
-                    case .customer:
-                        CustomerView()
-                    }
-                }
             }
+        } else {
+            LoginView()
         }
     }
 }

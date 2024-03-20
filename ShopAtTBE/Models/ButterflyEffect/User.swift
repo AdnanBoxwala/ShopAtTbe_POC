@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-class ButterflyEffect: Identifiable {
+class ButterflyEffect {
     struct ShoppingItem: Codable {
         var name: String
         var price: Double
@@ -17,7 +17,7 @@ class ButterflyEffect: Identifiable {
         var dateOfPurchase: Date
     }
     
-    struct User: Codable {
+    struct User: Identifiable, Codable {
         var id: String
         var firstName: String
         var lastName: String
@@ -25,15 +25,13 @@ class ButterflyEffect: Identifiable {
         var emailId: String
         var role: UserRole
         
-        //    TODO: add orders to user data. need to also be codable
         var orderHistory: [ShoppingItem]
-        var basket: [ShoppingItem]
         
         var initials: String {
             "\(firstName.first!)\(lastName.first!)"
         }
         
-        init(id: String, firstName: String, lastName: String, dateOfBirth: Date, emailId: String, role: UserRole, orderHistory: [ShoppingItem], basket: [ShoppingItem]) {
+        init(id: String, firstName: String, lastName: String, dateOfBirth: Date, emailId: String, role: UserRole, orderHistory: [ShoppingItem]) {
             self.id = id
             self.firstName = firstName
             self.lastName = lastName
@@ -41,9 +39,6 @@ class ButterflyEffect: Identifiable {
             self.emailId = emailId
             self.role = role
             self.orderHistory = orderHistory
-            self.basket = basket
         }
     }
-    
-    var user = User(id: "", firstName: "", lastName: "", dateOfBirth: Date.now, emailId: "", role: .customer, orderHistory: [], basket: [])
 }

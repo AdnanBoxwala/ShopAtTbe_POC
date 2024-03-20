@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct CustomerView: View {
+    @State var viewModel = ViewModel()
     var body: some View {
         TabView {
-            HomeView()
+            HomeView(selectedJewellery: $viewModel.selectedJewellery)
                 .tabItem { Label("T.B.E", systemImage: "house") }
             CheckoutView()
                 .tabItem { Label("Bag", systemImage: "handbag.fill") }
             UserProfileView()
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }
         }
-
+        .onAppear(perform: viewModel.getAllItems)
+        .environment(viewModel)
     }
 }
 

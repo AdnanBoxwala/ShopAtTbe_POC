@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct CheckoutView: View {
+    @Environment(CustomerView.ViewModel.self) var viewModel
+    
     var body: some View {
-        ContentUnavailableView("", systemImage: "handbag", description: Text("Your Bag is Empty.\nWhen you add products, they'll\nappear here."))
+        List(viewModel.basket, id: \.productId) {
+            BasketItemView(item: $0)
+        }
     }
 }
 

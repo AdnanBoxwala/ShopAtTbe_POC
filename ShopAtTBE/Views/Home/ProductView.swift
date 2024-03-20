@@ -20,6 +20,7 @@ struct ProductView: View {
                 .scaledToFill()
                 .frame(width: 150, height: 200)
                 .clipped()
+                .border(Color.black, width: 2)
                 
             VStack(alignment: .leading) {
                 Text(name)
@@ -37,5 +38,5 @@ struct ProductView: View {
 }
 
 #Preview {
-    ProductView(image: UIImage(named: "Chandbali_1")!, name: "test", price: 100.0)
+    ProductView(image: UIImage(named: "placebolder_tbe")!, name: "test", price: 100.0)
 }

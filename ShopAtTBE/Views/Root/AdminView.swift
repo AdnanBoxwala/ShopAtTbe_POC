@@ -10,8 +10,8 @@ import SwiftUI
 struct AdminView: View {
     var body: some View {
         TabView {
-            HomeView()
-                .tabItem { Label("T.B.E", systemImage: "house") }
+//            HomeView()
+//                .tabItem { Label("T.B.E", systemImage: "house") }
             UpdateInventoryView()
                 .tabItem { Label("Update Inventory", systemImage: "archivebox.fill")}
         }

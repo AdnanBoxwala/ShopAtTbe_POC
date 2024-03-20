@@ -41,7 +41,7 @@ import Foundation
             }
             
             self.loggedInUser = result.user
-            self.butterflyEffectUser = ButterflyEffect.User(id: result.user.uid, firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "anonymous", role: .customer, orderHistory: [], basket: [])
+            self.butterflyEffectUser = ButterflyEffect.User(id: result.user.uid, firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "", role: .customer, orderHistory: [])
         }
     }
     
@@ -49,7 +49,7 @@ import Foundation
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.loggedInUser = result.user
-            let user = ButterflyEffect.User(id: result.user.uid, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, emailId: email, role: .customer, orderHistory: [], basket: [])
+            let user = ButterflyEffect.User(id: result.user.uid, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, emailId: email, role: .customer, orderHistory: [])
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             await fetchUser()

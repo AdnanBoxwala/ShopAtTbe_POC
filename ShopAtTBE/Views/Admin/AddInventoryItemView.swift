@@ -34,7 +34,7 @@ struct AddInventoryItemView: View {
                     Text("Product details")
                 }
                 
-                TextField("Price", value: $viewModel.product.price, formatter: Product.currencyFormatter)
+                TextField("Price", value: $viewModel.product.price, formatter: currencyFormatter)
                     .keyboardType(.decimalPad)
                     .focused($editorIsFocussed)
                 

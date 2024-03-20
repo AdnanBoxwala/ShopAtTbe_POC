@@ -10,6 +10,9 @@
 		8709F8742BA4F14F000CCA81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8709F8732BA4F14F000CCA81 /* GoogleService-Info.plist */; };
 		8709F87A2BA5B458000CCA81 /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F8792BA5B458000CCA81 /* Color-Theme.swift */; };
 		8709F8832BA5DCE6000CCA81 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F8822BA5DCE6000CCA81 /* GuestView.swift */; };
+		8709F8882BAA3023000CCA81 /* BasketItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F8872BAA3023000CCA81 /* BasketItemView.swift */; };
+		8709F88B2BAB7836000CCA81 /* CurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F88A2BAB7836000CCA81 /* CurrencyFormatter.swift */; };
+		8709F88E2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8709F88D2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift */; };
 		8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */; };
 		8711485F2B9CE533005C53F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8711485E2B9CE533005C53F5 /* User.swift */; };
 		871148612B9CE5B5005C53F5 /* UserRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148602B9CE5B5005C53F5 /* UserRole.swift */; };
@@ -45,6 +48,9 @@
 		8709F8732BA4F14F000CCA81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "ShopAtTBE/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8709F8792BA5B458000CCA81 /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Color-Theme.swift"; path = "ShopAtTBE/Views/Authentication/Color-Theme.swift"; sourceTree = SOURCE_ROOT; };
 		8709F8822BA5DCE6000CCA81 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
+		8709F8872BAA3023000CCA81 /* BasketItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketItemView.swift; sourceTree = "<group>"; };
+		8709F88A2BAB7836000CCA81 /* CurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyFormatter.swift; sourceTree = "<group>"; };
+		8709F88D2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerView-ViewModel.swift"; sourceTree = "<group>"; };
 		8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessView.swift; sourceTree = "<group>"; };
 		8711485E2B9CE533005C53F5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		871148602B9CE5B5005C53F5 /* UserRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRole.swift; sourceTree = "<group>"; };
@@ -98,6 +104,22 @@
 			path = ButterflyEffect;
 			sourceTree = "<group>";
 		};
+		8709F8892BAB7824000CCA81 /* Globals */ = {
+			isa = PBXGroup;
+			children = (
+				8709F88A2BAB7836000CCA81 /* CurrencyFormatter.swift */,
+			);
+			path = Globals;
+			sourceTree = "<group>";
+		};
+		8709F88C2BAB7E6F000CCA81 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				8709F88D2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		871148622B9CF350005C53F5 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +170,7 @@
 				873E40A52B83D04D00158507 /* ShopAtTBE.entitlements */,
 				8768263B2B97BBAE004C5EC0 /* Enums */,
 				876826302B8ABD37004C5EC0 /* Extensions */,
+				8709F8892BAB7824000CCA81 /* Globals */,
 				873E40C12B86759F00158507 /* Models */,
 				873E40972B7D4C9800158507 /* Views */,
 				873E40C42B867CE600158507 /* ViewModels */,
@@ -189,6 +212,7 @@
 		873E40C42B867CE600158507 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8709F88C2BAB7E6F000CCA81 /* Root */,
 				871148702B9FA7B6005C53F5 /* Authentication */,
 				876826382B97B9A0004C5EC0 /* Home */,
 				8768262D2B8AAE9A004C5EC0 /* Admin */,
@@ -248,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				873E409E2B7D57F300158507 /* CheckoutView.swift */,
+				8709F8872BAA3023000CCA81 /* BasketItemView.swift */,
 			);
 			path = Checkout;
 			sourceTree = "<group>";
@@ -354,13 +379,16 @@
 				871148852BA0B72C005C53F5 /* CustomerView.swift in Sources */,
 				873E409B2B7D4ECA00158507 /* ProductView.swift in Sources */,
 				871148612B9CE5B5005C53F5 /* UserRole.swift in Sources */,
+				8709F88B2BAB7836000CCA81 /* CurrencyFormatter.swift in Sources */,
 				873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */,
 				8711485F2B9CE533005C53F5 /* User.swift in Sources */,
 				8711486D2B9DB481005C53F5 /* UserProfileView.swift in Sources */,
 				8709F8832BA5DCE6000CCA81 /* GuestView.swift in Sources */,
 				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
 				876826262B8A46B5004C5EC0 /* UpdateInventoryView.swift in Sources */,
+				8709F8882BAA3023000CCA81 /* BasketItemView.swift in Sources */,
 				873E409F2B7D57F300158507 /* CheckoutView.swift in Sources */,
+				8709F88E2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift in Sources */,
 				873E40992B7D4CAD00158507 /* HomeView.swift in Sources */,
 				8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */,
 				871148812BA0B68F005C53F5 /* ContentView.swift in Sources */,

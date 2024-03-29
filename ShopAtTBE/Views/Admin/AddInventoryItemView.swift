@@ -71,7 +71,7 @@ struct AddInventoryItemView: View {
                         }
                     }
                 } header: {
-                    Text("Add images or videos")
+                    Text("Add images")
                 }
                 .listRowSeparator(.hidden)
             }

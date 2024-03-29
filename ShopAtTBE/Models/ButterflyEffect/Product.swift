@@ -32,7 +32,7 @@ struct Product: Identifiable {
     }
     
     var isEntryValid: Bool {
-        return name.trimmingCharacters(in: .whitespaces).isEmpty || productId.trimmingCharacters(in: .whitespaces).isEmpty
+        return name.trimmingCharacters(in: .whitespaces).isEmpty || productId.trimmingCharacters(in: .whitespaces).isEmpty || assets.isEmpty
     }
     
     static func fromRecord(_ record: CKRecord) -> Product? {
@@ -71,4 +71,30 @@ struct Product: Identifiable {
         }
         return images
     }
+    
+    #if DEBUG
+    static private func createMockCKAssetForImageAsset(_ asset: String) -> CKAsset? {
+        guard let uiImage = UIImage(named: asset) else {
+            return nil
+        }
+        let fileUrl = URL.temporaryDirectory.appendingPathComponent(asset).appendingPathExtension("dat")
+        if let imageData = uiImage.jpegData(compressionQuality: 1.0) {
+            do {
+                try imageData.write(to: fileUrl)
+                let ckAsset = CKAsset(fileURL: fileUrl)
+                return ckAsset
+            } catch {
+                return nil
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    static private let mockCKAssets: [CKAsset] = [createMockCKAssetForImageAsset("Example_1")!,
+                                           createMockCKAssetForImageAsset("Example_2")!,
+                                           createMockCKAssetForImageAsset("Example_3")!]
+    
+    static let MOCK_PRODUCT = Product(name: "Chandbali", price: 450, assets: mockCKAssets, description: "Description for Chandbali", productId: "ABCD-1234", quantity: 5, category: .earrings)
+    #endif
 }

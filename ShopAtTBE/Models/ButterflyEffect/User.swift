@@ -41,4 +41,18 @@ class ButterflyEffect {
             self.orderHistory = orderHistory
         }
     }
+    
+    #if DEBUG
+    static let MOCK_USER = User(id: UUID().uuidString, 
+                                firstName: "MOCK",
+                                lastName: "USER",
+                                dateOfBirth: Date(),
+                                emailId: "mock.user@website.com",
+                                role: .customer,
+                                orderHistory: [ShoppingItem(name: Product.MOCK_PRODUCT.name,
+                                                            price: Product.MOCK_PRODUCT.price,
+                                                            quantity: Product.MOCK_PRODUCT.quantity,
+                                                            productId: Product.MOCK_PRODUCT.productId,
+                                                            dateOfPurchase: Date())])
+    #endif
 }

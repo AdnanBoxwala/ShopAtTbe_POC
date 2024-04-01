@@ -76,5 +76,6 @@ struct ProductDetailView: View {
 }
 
 #Preview {
-    ProductDetailView(item: Product())
+    ProductDetailView(item: Product.MOCK_PRODUCT)
+        .environment(CustomerView.ViewModel())
 }

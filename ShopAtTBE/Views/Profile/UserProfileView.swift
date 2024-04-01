@@ -10,66 +10,67 @@ import SwiftUI
 struct UserProfileView: View {
     @Environment(AuthViewModel.self) var authViewModel
     
+    let user: ButterflyEffect.User
+    var isAnonymous: Bool
+    
     var body: some View {
         NavigationStack {
             VStack {
-                if authViewModel.loggedInUser != nil && authViewModel.butterflyEffectUser != nil {
-                    VStack(spacing: 10) {
-                        Text(authViewModel.butterflyEffectUser!.initials)
-                            .font(.title)
-                            .padding()
-                            .background(Color.secondary)
-                            .clipShape(Circle())
-                        
-                        Text("\(authViewModel.butterflyEffectUser!.firstName.uppercased()) \(authViewModel.butterflyEffectUser!.lastName.uppercased())")
-                        
-                        if !authViewModel.loggedInUser!.isAnonymous {
-                            VStack {
-                                Spacer()
-                                HStack(alignment: .bottom) {
-                                    Button {
-                                        print("show users orders")
-                                    } label: {
-                                        VStack {
-                                            Image(systemName: "archivebox.fill")
-                                                .font(.title)
-                                            Text("Orders")
-                                                .padding(.horizontal)
-                                        }
-                                    }
-                                    
-                                    Divider()
-                                        .frame(height: 50)
-                                    
-                                    Button {
-                                        print("show users details")
-                                    } label: {
-                                        VStack {
-                                            Image(systemName: "pencil.and.list.clipboard")
-                                                .font(.title)
-                                            Text("Details")
-                                                .padding(.horizontal)
-                                        }
+                VStack(spacing: 10) {
+                    Text(user.initials)
+                        .font(.title)
+                        .padding()
+                        .background(Color.secondary)
+                        .clipShape(Circle())
+                    
+                    Text("\(user.firstName.uppercased()) \(user.lastName.uppercased())")
+                    
+                    if !isAnonymous {
+                        VStack {
+                            Spacer()
+                            HStack(alignment: .bottom) {
+                                Button {
+                                    print("show users orders")
+                                } label: {
+                                    VStack {
+                                        Image(systemName: "archivebox.fill")
+                                            .font(.title)
+                                        Text("Orders")
+                                            .padding(.horizontal)
                                     }
                                 }
-                                Spacer()
-                                Button(role: .destructive) {
-                                    authViewModel.signOut()
+                                
+                                Divider()
+                                    .frame(height: 50)
+                                
+                                Button {
+                                    print("show users details")
                                 } label: {
-                                    Text("Log Out")
-                                        .padding()
+                                    VStack {
+                                        Image(systemName: "pencil.and.list.clipboard")
+                                            .font(.title)
+                                        Text("Details")
+                                            .padding(.horizontal)
+                                    }
                                 }
                             }
-                        } else {
-                            VStack {
-                                Spacer()
-                                
-                                NavigationLink {
-                                    LoginView()
-                                } label: {
-                                    Text("Sign In with Email")
-                                        .foregroundStyle(.primary)
-                                }
+                            Spacer()
+                            Button(role: .destructive) {
+                                authViewModel.signOut()
+                            } label: {
+                                Text("Log Out")
+                                    .padding()
+                            }
+                        }
+                    } else {
+                        VStack {
+                            Spacer()
+                            
+                            NavigationLink {
+                                LoginView()
+                            } label: {
+                                Text("Sign In with Email")
+                                    .foregroundStyle(.primary)
                             }
                         }
                     }
@@ -81,6 +82,6 @@ struct UserProfileView: View {
 }
 
 #Preview {
-    UserProfileView()
+    UserProfileView(user: ButterflyEffect.MOCK_USER, isAnonymous: false)
         .environment(AuthViewModel())
 }

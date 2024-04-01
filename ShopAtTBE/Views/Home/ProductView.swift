@@ -38,5 +38,5 @@ struct ProductView: View {
 }
 
 #Preview {
-    ProductView(image: UIImage(named: "placebolder_tbe")!, name: "test", price: 100.0)
+    ProductView(image: UIImage(named: "Example_1")!, name: "test", price: 100.0)
 }

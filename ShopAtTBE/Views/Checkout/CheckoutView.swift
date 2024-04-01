@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct CheckoutView: View {
-    @Environment(CustomerView.ViewModel.self) var viewModel
+    let basket: [BasketItem]
     
     var body: some View {
-        List(viewModel.basket, id: \.productId) {
-            BasketItemView(item: $0)
+        if basket.isEmpty {
+            ContentUnavailableView("", systemImage: "handbag", description: Text("Your Bag is Empty.\nWhen you add products, they'll\nappear here."))
+        } else {
+            List(basket, id: \.productId) {
+                BasketItemView(item: $0)
+            }
         }
     }
 }
 
 #Preview {
-    CheckoutView()
+    CheckoutView(basket: CustomerView.ViewModel.MOCK_BASKET)
 }

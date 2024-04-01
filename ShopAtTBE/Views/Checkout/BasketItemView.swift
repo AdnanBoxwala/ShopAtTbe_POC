@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BasketItemView: View {
-    var item: CustomerView.ViewModel.BasketItem
+    var item: BasketItem
     
     var body: some View {
         HStack {
@@ -36,5 +36,5 @@ struct BasketItemView: View {
 }
 
 #Preview {
-    BasketItemView(item: CustomerView.ViewModel.BasketItem(displayImage: UIImage(named: "placeholder_tbe")!, name: "Name", price: 150.0, productId: "ABCD-1234", quantity: 5))
+    BasketItemView(item: BasketItem(displayImage: UIImage(named: "Example_1")!, name: "Name", price: 150.0, productId: "ABCD-1234", quantity: 5))
 }

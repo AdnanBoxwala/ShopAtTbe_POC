@@ -12,13 +12,6 @@ import SwiftUI
 extension CustomerView {
     @Observable
     class ViewModel {
-        struct BasketItem {
-            var displayImage: UIImage
-            var name: String
-            var price: Double
-            var productId: String
-            var quantity: Int
-        }
         
         private var database: CKDatabase
         private var container: CKContainer
@@ -67,5 +60,10 @@ extension CustomerView {
             
             basket.append(basketItem)
         }
+        
+        #if DEBUG
+        static let MOCK_BASKET: [BasketItem] = [
+        BasketItem(displayImage: UIImage(named: "Example_1")!, name: "Chandbali", price: 450, productId: "ABCD-1234", quantity: 5)]
+        #endif
     }
 }

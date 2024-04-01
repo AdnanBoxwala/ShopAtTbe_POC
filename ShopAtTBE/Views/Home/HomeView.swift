@@ -49,11 +49,12 @@ struct HomeView: View {
                 .padding(.horizontal)
             }
             .navigationTitle("The Butterfly Effect")
-//            .onAppear(perform: viewModel.getAllItems)
+            .onAppear(perform: viewModel.getAllItems)
         }
     }
 }
 
 #Preview {
     HomeView(selectedJewellery: .constant(.all))
+        .environment(CustomerView.ViewModel())
 }

@@ -8,22 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(AuthViewModel.self) var authViewModel
+    let butterflyEffectUser: ButterflyEffect.User
+    let isAnonymous: Bool
     
     var body: some View {
-        if authViewModel.butterflyEffectUser != nil {
-            switch authViewModel.butterflyEffectUser!.role {
-            case .admin:
-                AdminView()
-            case .customer:
-                CustomerView()
-            }
-        } else {
-            LoginView()
+        switch butterflyEffectUser.role {
+        case .admin:
+            AdminView()
+        case .customer:
+            CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(butterflyEffectUser: ButterflyEffect.MOCK_USER, isAnonymous: false)
+        .environment(AuthViewModel())
 }

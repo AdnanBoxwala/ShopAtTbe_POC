@@ -13,7 +13,9 @@ struct RootView: View {
     var body: some View {
         Group {
             if authViewModel.loggedInUser != nil {
-                ContentView()
+                if authViewModel.butterflyEffectUser != nil {
+                    ContentView(butterflyEffectUser: authViewModel.butterflyEffectUser!, isAnonymous: authViewModel.loggedInUser!.isAnonymous)
+                }
             } else {
                 LoginView()
             }

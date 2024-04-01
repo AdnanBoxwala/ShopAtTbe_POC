@@ -8,21 +8,24 @@
 import SwiftUI
 
 struct CustomerView: View {
-    @State var viewModel = ViewModel()
+    @State var customerViewModel = ViewModel()
+    let user: ButterflyEffect.User
+    let isAnonymous: Bool
+    
     var body: some View {
         TabView {
-            HomeView(selectedJewellery: $viewModel.selectedJewellery)
+            HomeView(selectedJewellery: $customerViewModel.selectedJewellery)
                 .tabItem { Label("T.B.E", systemImage: "house") }
-            CheckoutView()
+            CheckoutView(basket: customerViewModel.basket)
                 .tabItem { Label("Bag", systemImage: "handbag.fill") }
-            UserProfileView()
+            UserProfileView(user: user, isAnonymous: isAnonymous)
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }
         }
-        .onAppear(perform: viewModel.getAllItems)
-        .environment(viewModel)
+        .environment(customerViewModel)
     }
 }
 
 #Preview {
-    CustomerView()
+    CustomerView(user: ButterflyEffect.MOCK_USER, isAnonymous: false)
+        .environment(AuthViewModel())
 }

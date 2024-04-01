@@ -14,11 +14,11 @@ struct CustomerView: View {
     
     var body: some View {
         TabView {
-            HomeView(selectedJewellery: $customerViewModel.selectedJewellery)
+            CatalogView(selectedJewellery: $customerViewModel.selectedJewellery)
                 .tabItem { Label("T.B.E", systemImage: "house") }
-            CheckoutView(basket: customerViewModel.basket)
+            BasketView(basket: customerViewModel.basket)
                 .tabItem { Label("Bag", systemImage: "handbag.fill") }
-            UserProfileView(user: user, isAnonymous: isAnonymous)
+            ProfileView(user: user, isAnonymous: isAnonymous)
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }
         }
         .environment(customerViewModel)

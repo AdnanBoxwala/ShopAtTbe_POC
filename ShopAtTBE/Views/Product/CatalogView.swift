@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeView: View {
+struct CatalogView: View {
     @Environment(CustomerView.ViewModel.self) var viewModel
     @Binding var selectedJewellery: JewelleryType
     
@@ -55,6 +55,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(selectedJewellery: .constant(.all))
+    CatalogView(selectedJewellery: .constant(.all))
         .environment(CustomerView.ViewModel())
 }

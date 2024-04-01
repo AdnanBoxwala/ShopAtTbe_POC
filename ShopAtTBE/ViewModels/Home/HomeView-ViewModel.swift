@@ -8,7 +8,7 @@
 import CloudKit
 import Foundation
 
-extension HomeView {
+extension CatalogView {
     @Observable
     class ViewModel {
         private var database: CKDatabase

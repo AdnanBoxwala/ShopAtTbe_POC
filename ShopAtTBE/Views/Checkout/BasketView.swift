@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CheckoutView: View {
+struct BasketView: View {
     let basket: [BasketItem]
     
     var body: some View {
@@ -22,5 +22,5 @@ struct CheckoutView: View {
 }
 
 #Preview {
-    CheckoutView(basket: CustomerView.ViewModel.MOCK_BASKET)
+    BasketView(basket: CustomerView.ViewModel.MOCK_BASKET)
 }

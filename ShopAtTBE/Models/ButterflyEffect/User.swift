@@ -54,5 +54,13 @@ class ButterflyEffect {
                                                             quantity: Product.MOCK_PRODUCT.quantity,
                                                             productId: Product.MOCK_PRODUCT.productId,
                                                             dateOfPurchase: Date())])
+    
+    static let MOCK_ADMIN = User(id: UUID().uuidString,
+                                firstName: "MOCK",
+                                lastName: "ADMIN",
+                                dateOfBirth: Date(),
+                                emailId: "mock.admin@website.com",
+                                role: .admin,
+                                orderHistory: [])
     #endif
 }

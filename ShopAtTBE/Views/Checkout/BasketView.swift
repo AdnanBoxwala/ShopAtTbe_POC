@@ -8,19 +8,28 @@
 import SwiftUI
 
 struct BasketView: View {
-    let basket: [BasketItem]
+    @Environment(CustomerView.ViewModel.self) var customerViewModel
     
     var body: some View {
-        if basket.isEmpty {
-            ContentUnavailableView("", systemImage: "handbag", description: Text("Your Bag is Empty.\nWhen you add products, they'll\nappear here."))
-        } else {
-            List(basket, id: \.productId) {
-                BasketItemView(item: $0)
+        NavigationStack {
+            if customerViewModel.basket.isEmpty {
+                ContentUnavailableView("", systemImage: "handbag", description: Text("Your Bag is Empty.\nWhen you add products, they'll\nappear here."))
+            } else {
+                List {
+                    ForEach(customerViewModel.basket, id: \.productId) { basketItem in
+                        BasketItemView(item: basketItem)
+                    }
+                    .onDelete(perform: customerViewModel.removeBasketItem)
+                }
+                .navigationTitle("Basket")
             }
         }
     }
+    
+    
 }
 
 #Preview {
-    BasketView(basket: CustomerView.ViewModel.MOCK_BASKET)
+    BasketView()
+        .environment(CustomerView.ViewModel())
 }

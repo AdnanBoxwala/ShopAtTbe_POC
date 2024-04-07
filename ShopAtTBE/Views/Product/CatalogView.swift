@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CatalogView: View {
-    @Environment(CustomerView.ViewModel.self) var viewModel
-    @Binding var selectedJewellery: JewelleryType
+    @State var viewModel = ViewModel()
     
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -20,7 +19,7 @@ struct CatalogView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Picker(selection: $selectedJewellery) {
+                    Picker(selection: $viewModel.selectedJewellery) {
                         ForEach(JewelleryType.allCases, id: \.self) {
                             Text($0.rawValue)
                         }
@@ -55,6 +54,6 @@ struct CatalogView: View {
 }
 
 #Preview {
-    CatalogView(selectedJewellery: .constant(.all))
-        .environment(CustomerView.ViewModel())
+    CatalogView()
+        .environment(CatalogView.ViewModel())
 }

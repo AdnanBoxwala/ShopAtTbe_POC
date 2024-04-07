@@ -8,33 +8,66 @@
 import SwiftUI
 
 struct BasketItemView: View {
-    var item: BasketItem
+    @Bindable var item: BasketItem
+    @State private var showQuantitySheet = false
     
     var body: some View {
-        HStack {
-            Image(uiImage: item.displayImage)
-                .resizable()
-                .scaledToFill()
-                .frame(width: 50, height: 50)
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(Color.black, lineWidth: 2)
+        VStack {
+            HStack(alignment: .top) {
+                Image(uiImage: item.displayImage)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 100, height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .padding(.trailing)
+                
+                VStack(alignment: .leading) {
+                    Text(item.name)
+                        .font(.title2)
+                    Text(item.price, format: .currency(code: "AED"))
+                        .font(.title3.bold())
+                        .fontWeight(.bold)
+                    
+                    Button {
+                        showQuantitySheet = true
+                    } label: {
+                        Text("Qty: \(item.quantity) \u{2304}")
+                    }
+                    .buttonStyle(.bordered)
+                    .foregroundStyle(Color.primary)
                 }
-                .padding(.trailing)
-            
-            VStack {
-                Text(item.name)
-                Text("\(item.quantity)")
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-             
-            Spacer()
-            
-            Text(item.price, format: .currency(code: "AED"))
         }
+        .sheet(isPresented: $showQuantitySheet, content: {
+            VStack {
+                Picker("", selection: $item.quantity) {
+                    ForEach(1...10, id: \.self) { value in
+                        Button("\(value)") {
+                            item.quantity = value
+                        }
+                    }
+                }
+                .pickerStyle(.wheel)
+                
+                Button {
+                    showQuantitySheet = false
+                }label: {
+                    Text("Done")
+                        .font(.title3)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .foregroundStyle(Color.primary)
+                        .background(Color.secondary)
+                        .clipShape(Capsule())
+                }
+                .padding()
+            }
+            .presentationDetents([.fraction(0.4)])
+        })
     }
 }
 
 #Preview {
-    BasketItemView(item: BasketItem(displayImage: UIImage(named: "Example_1")!, name: "Name", price: 150.0, productId: "ABCD-1234", quantity: 5))
+    BasketItemView(item: BasketItem.MOCK_ITEM)
 }

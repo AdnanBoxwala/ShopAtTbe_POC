@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct CustomerView: View {
-    @State var customerViewModel = ViewModel()
+    @State var viewModel = ViewModel()
     let user: ButterflyEffect.User
     let isAnonymous: Bool
     
     var body: some View {
         TabView {
-            CatalogView(selectedJewellery: $customerViewModel.selectedJewellery)
+            CatalogView()
                 .tabItem { Label("T.B.E", systemImage: "house") }
-            BasketView(basket: customerViewModel.basket)
+            BasketView()
                 .tabItem { Label("Bag", systemImage: "handbag.fill") }
             ProfileView(user: user, isAnonymous: isAnonymous)
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }
         }
-        .environment(customerViewModel)
+        .environment(viewModel)
     }
 }
 

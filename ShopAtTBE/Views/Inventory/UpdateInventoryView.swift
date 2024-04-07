@@ -43,4 +43,5 @@ struct UpdateInventoryView: View {
 
 #Preview {
     UpdateInventoryView()
+        .environment(AddInventoryItemView.ViewModel())
 }

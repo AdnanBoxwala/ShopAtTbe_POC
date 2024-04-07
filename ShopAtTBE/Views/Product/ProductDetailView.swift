@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-    @Environment(CustomerView.ViewModel.self) var viewModel
+    @Environment(CustomerView.ViewModel.self) var customerViewModel
     
     let item: Product
         
@@ -56,7 +56,7 @@ struct ProductDetailView: View {
                     }
                     
                     Button {
-                        viewModel.addToBasket(item: item, quantity: 1)
+                        customerViewModel.addToBasket(item: item, quantity: 1)
                     } label: {
                         Text("Add to Bag")
                             .font(.title2)

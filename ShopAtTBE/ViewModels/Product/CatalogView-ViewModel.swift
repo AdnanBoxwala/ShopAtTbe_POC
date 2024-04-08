@@ -45,5 +45,25 @@ extension CatalogView {
                 }
             }
         }
+        
+        func handleUrl(_ url: URL) -> Product? {
+            guard url.scheme == "Shopattbeapp" else {
+                return nil
+            }
+            guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+                print("Invalid URL")
+                return nil
+            }
+            guard let action = components.host, action == "show-product" else {
+                print("Unknown URL")
+                return nil
+            }
+            guard let productId = components.queryItems?.first(where: { $0.name == "productId" })?.value else {
+                print("Product not provided")
+                return nil
+            }
+            
+            return self.items.first(where: { $0.productId == productId})
+        }
     }
 }

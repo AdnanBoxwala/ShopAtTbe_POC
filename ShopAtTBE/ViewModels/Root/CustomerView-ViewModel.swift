@@ -35,10 +35,11 @@ extension CustomerView {
             basket.remove(at: idx)
         }
         
-        #if DEBUG
-        init() {
-            self.basket = [BasketItem.MOCK_ITEM]
+        func isValidUrlScheme(_ url: URL) -> Bool {
+            guard url.scheme == "Shopattbeapp" else {
+                return false
+            }
+            return true
         }
-        #endif
     }
 }

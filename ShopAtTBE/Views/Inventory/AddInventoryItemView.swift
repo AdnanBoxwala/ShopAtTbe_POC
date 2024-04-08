@@ -34,6 +34,7 @@ struct AddInventoryItemView: View {
                     Text("Product details")
                 }
                 
+                // TODO: needs to be fixed
                 TextField("Price", value: $viewModel.product.price, formatter: currencyFormatter)
                     .keyboardType(.decimalPad)
                     .focused($editorIsFocussed)

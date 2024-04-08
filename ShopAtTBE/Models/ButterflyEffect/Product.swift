@@ -9,7 +9,7 @@ import CloudKit
 import UIKit
 import Foundation
 
-struct Product: Identifiable {    
+struct Product: Identifiable, Hashable {    
     let id = UUID()
     var name: String = ""
     var price: Double = 0.0

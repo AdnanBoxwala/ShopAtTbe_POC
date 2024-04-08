@@ -10,6 +10,7 @@ import SwiftUI
 struct CatalogView: View {
     @State var viewModel = ViewModel()
     
+    @State private var linkedProduct: Product?    
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -47,13 +48,18 @@ struct CatalogView: View {
                 }
                 .padding(.horizontal)
             }
-            .navigationTitle("The Butterfly Effect")
+            .navigationTitle("Catalog")
             .onAppear(perform: viewModel.getAllItems)
+            .onOpenURL { productUrl in
+                linkedProduct = viewModel.handleUrl(productUrl)
+            }
+            .navigationDestination(item: $linkedProduct) { item in
+                ProductDetailView(item: item)
+            }
         }
     }
 }
 
 #Preview {
     CatalogView()
-        .environment(CatalogView.ViewModel())
 }

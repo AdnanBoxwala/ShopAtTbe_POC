@@ -23,7 +23,6 @@ extension CatalogView {
         }
         
         func getAllItems() {
-            if !items.isEmpty { return }
             let query = CKQuery(recordType: RecordType.product.rawValue, predicate: NSPredicate(value: true))
             
             self.database.fetch(withQuery: query) { result in
@@ -64,6 +63,15 @@ extension CatalogView {
             }
             
             return self.items.first(where: { $0.productId == productId})
+        }
+        
+        func showSelectedJewellery(_ item: Product) -> Bool {
+            if selectedJewellery == .all { return true }
+            return item.category == selectedJewellery
+        }
+        
+        func isCategoryEmpty(_ category: JewelleryType) -> Bool {
+            self.items.filter({$0.category == category}).isEmpty
         }
     }
 }

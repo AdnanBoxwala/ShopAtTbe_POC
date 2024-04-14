@@ -14,6 +14,14 @@ extension CustomerView {
     class ViewModel {
         var basket: [BasketItem] = []
         
+        var totalCost: Double {
+            var finalCost = 0.0
+            for item in basket {
+                finalCost += item.price * Double(item.quantity)
+            }
+            return finalCost
+        }
+        
         func addToBasket(item: Product, quantity: Int) {
             if let index = basket.firstIndex(where: {$0.productId == item.productId}) {
                 basket[index].quantity += 1

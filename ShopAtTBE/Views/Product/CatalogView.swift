@@ -31,7 +31,7 @@ struct CatalogView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns) {
-                        ForEach(viewModel.items) { item in
+                        ForEach(viewModel.items.filter(viewModel.showSelectedJewellery)) { item in
                             NavigationLink {
                                 ProductDetailView(item: item)
                             } label: {
@@ -49,7 +49,11 @@ struct CatalogView: View {
                 .padding(.horizontal)
             }
             .navigationTitle("Catalog")
-            .onAppear(perform: viewModel.getAllItems)
+            .onAppear {
+                if viewModel.items.isEmpty {
+                    viewModel.getAllItems()
+                }
+            }
             .onOpenURL { productUrl in
                 linkedProduct = viewModel.handleUrl(productUrl)
             }
@@ -62,4 +66,5 @@ struct CatalogView: View {
 
 #Preview {
     CatalogView()
+        .environment(CustomerView.ViewModel())
 }

@@ -17,6 +17,7 @@ extension AddInventoryItemView {
         private var container: CKContainer
         private var assetUrls: [URL] = []
         
+        private(set) var items = [Product]()
         private(set) var isUploading = false
         private(set) var isUploaded = false
         
@@ -64,9 +65,32 @@ extension AddInventoryItemView {
                         self.isUploading = false
                         self.isUploaded = true
                         self.clearAllResources()
-                        
-                        print("saved")
                     }
+                }
+            }
+        }
+        
+        
+        
+        func getAllItems() {
+            let query = CKQuery(recordType: RecordType.product.rawValue, predicate: NSPredicate(value: true))
+            
+            self.database.fetch(withQuery: query) { result in
+                switch result {
+                case .success(let result):
+                    result.matchResults.compactMap { $0.1 }
+                        .forEach {
+                            switch $0 {
+                            case .success(let record):
+                                if let product = Product.fromRecord(record) {
+                                    self.items.append(product)
+                                }
+                            case .failure(let error):
+                                print(error.localizedDescription)
+                            }
+                        }
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             }
         }

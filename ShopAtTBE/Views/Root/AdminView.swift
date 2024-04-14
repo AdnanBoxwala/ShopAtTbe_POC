@@ -12,10 +12,10 @@ struct AdminView: View {
     
     var body: some View {
         TabView {
-//            HomeView()
-//                .tabItem { Label("T.B.E", systemImage: "house") }
-            UpdateInventoryView()
-                .tabItem { Label("Update Inventory", systemImage: "archivebox.fill")}
+            ProductListView()
+                .tabItem { Label("Inventory", systemImage: "archivebox.fill")}
+//            UpdateInventoryView()
+//                .tabItem { Label("Update Inventory", systemImage: "pencil")}
             ProfileView(user: user)
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }
         }

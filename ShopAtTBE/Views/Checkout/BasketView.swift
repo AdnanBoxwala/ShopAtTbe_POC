@@ -15,11 +15,21 @@ struct BasketView: View {
             if customerViewModel.basket.isEmpty {
                 ContentUnavailableView("", systemImage: "handbag", description: Text("Your Bag is Empty.\nWhen you add products, they'll\nappear here."))
             } else {
-                List {
-                    ForEach(customerViewModel.basket, id: \.productId) { basketItem in
-                        BasketItemView(item: basketItem)
+                VStack {
+                    List {
+                        ForEach(customerViewModel.basket, id: \.productId) { basketItem in
+                            BasketItemView(item: basketItem)
+                        }
+                        .onDelete(perform: customerViewModel.removeBasketItem)
+                        
+                        HStack {
+                            Text("Total: ")
+                                .font(.title2)
+                            Spacer()
+                            Text(customerViewModel.totalCost, format: .currency(code: "AED"))
+                                .font(.title2)
+                        }
                     }
-                    .onDelete(perform: customerViewModel.removeBasketItem)
                 }
                 .navigationTitle("Basket")
             }

@@ -69,9 +69,5 @@ extension CatalogView {
             if selectedJewellery == .all { return true }
             return item.category == selectedJewellery
         }
-        
-        func isCategoryEmpty(_ category: JewelleryType) -> Bool {
-            self.items.filter({$0.category == category}).isEmpty
-        }
     }
 }

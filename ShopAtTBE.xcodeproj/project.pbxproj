@@ -39,14 +39,14 @@
 		873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E409C2B7D504500158507 /* ProductDetailView.swift */; };
 		873E409F2B7D57F300158507 /* BasketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E409E2B7D57F300158507 /* BasketView.swift */; };
 		873E40C32B8675B200158507 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E40C22B8675B200158507 /* Product.swift */; };
-		876826262B8A46B5004C5EC0 /* UpdateInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826252B8A46B5004C5EC0 /* UpdateInventoryView.swift */; };
+		876826262B8A46B5004C5EC0 /* UpdateInventoryView_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826252B8A46B5004C5EC0 /* UpdateInventoryView_old.swift */; };
 		876826282B8A47EC004C5EC0 /* AddInventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */; };
 		8768262A2B8A4A08004C5EC0 /* UpdateInventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */; };
-		8768262F2B8AAEC0004C5EC0 /* AddInventoryItemView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768262E2B8AAEC0004C5EC0 /* AddInventoryItemView-ViewModel.swift */; };
+		8768262F2B8AAEC0004C5EC0 /* UpdateInventoryView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768262E2B8AAEC0004C5EC0 /* UpdateInventoryView-ViewModel.swift */; };
 		8768263A2B97B9FE004C5EC0 /* CatalogView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826392B97B9FE004C5EC0 /* CatalogView-ViewModel.swift */; };
 		8768263D2B97BBC9004C5EC0 /* RecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768263C2B97BBC9004C5EC0 /* RecordType.swift */; };
 		8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768263E2B97BE67004C5EC0 /* JewelleryType.swift */; };
-		87F0436F2BCBDB8C00FCC003 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0436E2BCBDB8C00FCC003 /* ProductListView.swift */; };
+		87F0436F2BCBDB8C00FCC003 /* UpdateInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0436E2BCBDB8C00FCC003 /* UpdateInventoryView.swift */; };
 		87F043712BCBF1FE00FCC003 /* View-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F043702BCBF1FE00FCC003 /* View-Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,14 +83,14 @@
 		873E409E2B7D57F300158507 /* BasketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketView.swift; sourceTree = "<group>"; };
 		873E40A52B83D04D00158507 /* ShopAtTBE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShopAtTBE.entitlements; sourceTree = "<group>"; };
 		873E40C22B8675B200158507 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		876826252B8A46B5004C5EC0 /* UpdateInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInventoryView.swift; sourceTree = "<group>"; };
+		876826252B8A46B5004C5EC0 /* UpdateInventoryView_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInventoryView_old.swift; sourceTree = "<group>"; };
 		876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventoryItemView.swift; sourceTree = "<group>"; };
 		876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInventoryItemView.swift; sourceTree = "<group>"; };
-		8768262E2B8AAEC0004C5EC0 /* AddInventoryItemView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddInventoryItemView-ViewModel.swift"; sourceTree = "<group>"; };
+		8768262E2B8AAEC0004C5EC0 /* UpdateInventoryView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateInventoryView-ViewModel.swift"; sourceTree = "<group>"; };
 		876826392B97B9FE004C5EC0 /* CatalogView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView-ViewModel.swift"; sourceTree = "<group>"; };
 		8768263C2B97BBC9004C5EC0 /* RecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordType.swift; sourceTree = "<group>"; };
 		8768263E2B97BE67004C5EC0 /* JewelleryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JewelleryType.swift; sourceTree = "<group>"; };
-		87F0436E2BCBDB8C00FCC003 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
+		87F0436E2BCBDB8C00FCC003 /* UpdateInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInventoryView.swift; sourceTree = "<group>"; };
 		87F043702BCBF1FE00FCC003 /* View-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,11 +257,11 @@
 		876826242B8A4699004C5EC0 /* Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				876826252B8A46B5004C5EC0 /* UpdateInventoryView.swift */,
+				876826252B8A46B5004C5EC0 /* UpdateInventoryView_old.swift */,
 				876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */,
 				876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */,
 				8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */,
-				87F0436E2BCBDB8C00FCC003 /* ProductListView.swift */,
+				87F0436E2BCBDB8C00FCC003 /* UpdateInventoryView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 		8768262D2B8AAE9A004C5EC0 /* Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				8768262E2B8AAEC0004C5EC0 /* AddInventoryItemView-ViewModel.swift */,
+				8768262E2B8AAEC0004C5EC0 /* UpdateInventoryView-ViewModel.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -410,7 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8768262F2B8AAEC0004C5EC0 /* AddInventoryItemView-ViewModel.swift in Sources */,
+				8768262F2B8AAEC0004C5EC0 /* UpdateInventoryView-ViewModel.swift in Sources */,
 				8709F8992BBAFC1B000CCA81 /* StepperView.swift in Sources */,
 				8768262A2B8A4A08004C5EC0 /* UpdateInventoryItemView.swift in Sources */,
 				871148852BA0B72C005C53F5 /* CustomerView.swift in Sources */,
@@ -422,9 +422,9 @@
 				8711485F2B9CE533005C53F5 /* User.swift in Sources */,
 				8711486D2B9DB481005C53F5 /* CustomerProfileView.swift in Sources */,
 				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
-				876826262B8A46B5004C5EC0 /* UpdateInventoryView.swift in Sources */,
+				876826262B8A46B5004C5EC0 /* UpdateInventoryView_old.swift in Sources */,
 				8709F8882BAA3023000CCA81 /* BasketItemView.swift in Sources */,
-				87F0436F2BCBDB8C00FCC003 /* ProductListView.swift in Sources */,
+				87F0436F2BCBDB8C00FCC003 /* UpdateInventoryView.swift in Sources */,
 				873E409F2B7D57F300158507 /* BasketView.swift in Sources */,
 				8709F8902BB6FF41000CCA81 /* BasketItem.swift in Sources */,
 				8709F88E2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift in Sources */,

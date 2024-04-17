@@ -5,14 +5,30 @@
 //  Created by Adnan Boxwala on 24.02.24.
 //
 
+import CloudKit
 import SwiftUI
 
 struct UpdateInventoryItemView: View {
+    @Environment(UpdateInventoryView.ViewModel.self) var viewModel
+    
+    let queriedProduct: UpdateInventoryView.CKQueriedProduct
+    
+    // TODO: go back to previous view
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Delete", role: .destructive) {
+                viewModel.remove(queriedProduct.recordId)
+            }
+            .padding()
+            .background(Color.red)
+            .foregroundStyle(Color.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+        }
+        .navigationTitle(queriedProduct.product.productId)
     }
 }
 
 #Preview {
-    UpdateInventoryItemView()
+    UpdateInventoryItemView(queriedProduct: UpdateInventoryView.CKQueriedProduct(recordId: CKRecord.ID.init(recordName: "Product"), product: Product()))
+        .environment(UpdateInventoryView.ViewModel())
 }

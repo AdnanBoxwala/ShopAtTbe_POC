@@ -10,14 +10,20 @@ import Foundation
 import _PhotosUI_SwiftUI
 import SwiftUI
 
-extension AddInventoryItemView {
+// TODO: simplify this mess
+extension UpdateInventoryView {
+    struct CKQueriedProduct {
+        var recordId: CKRecord.ID
+        var product: Product
+    }
+    
     @Observable
     class ViewModel {
         private var database: CKDatabase
         private var container: CKContainer
         private var assetUrls: [URL] = []
         
-        private(set) var items = [Product]()
+        private(set) var items = [CKQueriedProduct]()
         private(set) var isUploading = false
         private(set) var isUploaded = false
         
@@ -70,7 +76,19 @@ extension AddInventoryItemView {
             }
         }
         
+        func remove(_ recordId: CKRecord.ID) {
+            self.database.delete(withRecordID: recordId) { returnedRecordId, error in
+                if let error = error {
+                    print("Failed to remove product with record ID \(recordId) from database with error \(error).")
+                } else {
+                    print("Successfully removed product with record ID \(recordId) from database.")
+                }
+            }
+        }
         
+        func isCategoryEmpty(_ category: JewelleryType) -> Bool {
+            self.items.filter({$0.product.category == category}).isEmpty
+        }
         
         func getAllItems() {
             let query = CKQuery(recordType: RecordType.product.rawValue, predicate: NSPredicate(value: true))
@@ -83,7 +101,7 @@ extension AddInventoryItemView {
                             switch $0 {
                             case .success(let record):
                                 if let product = Product.fromRecord(record) {
-                                    self.items.append(product)
+                                    self.items.append(CKQueriedProduct(recordId: record.recordID, product: product))
                                 }
                             case .failure(let error):
                                 print(error.localizedDescription)

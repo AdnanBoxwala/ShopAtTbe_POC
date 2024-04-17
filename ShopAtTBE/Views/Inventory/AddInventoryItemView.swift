@@ -9,10 +9,11 @@ import PhotosUI
 import SwiftUI
 
 struct AddInventoryItemView: View {
+    @Environment(UpdateInventoryView.ViewModel.self) var viewModel
     @FocusState private var editorIsFocussed: Bool
-    @State private var viewModel = ViewModel()
         
     var body: some View {
+        @Bindable var viewModel = viewModel
         ZStack {
             Form {
                 Section {
@@ -111,4 +112,5 @@ struct AddInventoryItemView: View {
 
 #Preview {
     AddInventoryItemView()
+        .environment(UpdateInventoryView.ViewModel())
 }

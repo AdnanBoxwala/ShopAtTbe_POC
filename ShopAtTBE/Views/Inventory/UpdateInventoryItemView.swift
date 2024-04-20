@@ -9,26 +9,44 @@ import CloudKit
 import SwiftUI
 
 struct UpdateInventoryItemView: View {
-    @Environment(UpdateInventoryView.ViewModel.self) var viewModel
+    @Environment(ManageInventoryView.ViewModel.self) var viewModel
+    @State var record: ManageInventoryView.FetchedRecord
     
-    let queriedProduct: UpdateInventoryView.CKQueriedProduct
-    
+    init(record: ManageInventoryView.FetchedRecord) {
+        self._record = State(initialValue: record)
+    }
+        
     // TODO: go back to previous view
     var body: some View {
         VStack {
+            ProductFormView(record: $record)
+            
             Button("Delete", role: .destructive) {
-                viewModel.remove(queriedProduct.recordId)
+                viewModel.removeRecord(record.recordId)
             }
             .padding()
             .background(Color.red)
             .foregroundStyle(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 5))
         }
-        .navigationTitle(queriedProduct.product.productId)
+        .navigationTitle(record.productId)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button("Update") {
+                    // save to iCloud
+                    Task {
+                        viewModel.updateRecord()
+                    }
+                }
+                .disabled(record.name.trimmingCharacters(in: .whitespaces).isEmpty || record.productId.trimmingCharacters(in: .whitespaces).isEmpty || record.assets.isEmpty)
+            }
+        }
+
     }
 }
 
 #Preview {
-    UpdateInventoryItemView(queriedProduct: UpdateInventoryView.CKQueriedProduct(recordId: CKRecord.ID.init(recordName: "Product"), product: Product()))
-        .environment(UpdateInventoryView.ViewModel())
+    UpdateInventoryItemView(record: ManageInventoryView.FetchedRecord(name: "", price: 0.0, assets: [], description: "", productId: "", quantity: 1, category: .ring, recordId: CKRecord.ID.init(recordName: "test")))
+        .environment(ManageInventoryView.ViewModel())
 }

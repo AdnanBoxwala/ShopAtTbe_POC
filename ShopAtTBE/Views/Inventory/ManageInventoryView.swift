@@ -5,10 +5,11 @@
 //  Created by Adnan Boxwala on 14.04.24.
 //
 
+import CloudKit
 import SwiftUI
 
-struct UpdateInventoryView: View {
-    @Environment(UpdateInventoryView.ViewModel.self) var viewModel
+struct ManageInventoryView: View {
+    @Environment(ManageInventoryView.ViewModel.self) var viewModel
     
     @State private var searchText = ""
     @State private var showAddItemSheet = false
@@ -18,11 +19,11 @@ struct UpdateInventoryView: View {
             List {
                 ForEach(JewelleryType.allCases, id: \.self) { category in
                     Section {
-                        ForEach(searchResults.filter { $0.product.category == category }, id: \.product.productId) { item in
+                        ForEach(viewModel.items.filter({ $0.category == category }), id: \.productId) { item in
                             NavigationLink {
-                                UpdateInventoryItemView(queriedProduct: item)
+                                UpdateInventoryItemView(record: item)
                             } label: {
-                                Text(item.product.productId)
+                                Text(item.productId)
                             }
                         }
                     } header: {
@@ -32,7 +33,7 @@ struct UpdateInventoryView: View {
                 }
             }
             .navigationTitle("Inventory")
-            .sheet(isPresented: $showAddItemSheet) {
+            .sheet(isPresented: $showAddItemSheet){
                 NavigationStack {
                     AddInventoryItemView()
                 }
@@ -59,20 +60,20 @@ struct UpdateInventoryView: View {
         .environment(viewModel)
     }
     
-    var searchResults: [CKQueriedProduct] {
+    var searchResults: [ManageInventoryView.FetchedRecord] {
         if searchText.isEmpty {
             return viewModel.items
         } else {
             return viewModel.items.filter {
-                $0.product.name.lowercased().contains(searchText.lowercased()) ||
-                $0.product.productId.lowercased().contains(searchText.lowercased()) ||
-                $0.product.description.lowercased().contains(searchText.lowercased())
+                $0.name.lowercased().contains(searchText.lowercased()) ||
+                $0.productId.lowercased().contains(searchText.lowercased()) ||
+                $0.description.lowercased().contains(searchText.lowercased())
             }
         }
     }
 }
 
 #Preview {
-    UpdateInventoryView()
-        .environment(UpdateInventoryView.ViewModel())
+    ManageInventoryView()
+        .environment(ManageInventoryView.ViewModel())
 }

@@ -9,8 +9,8 @@ import CloudKit
 import UIKit
 import Foundation
 
-struct Product: Identifiable, Hashable {    
-    let id = UUID()
+@Observable
+class Product: Equatable, Hashable, Identifiable {
     var name: String = ""
     var price: Double = 0.0
     var assets: [CKAsset] = [CKAsset]()
@@ -18,6 +18,26 @@ struct Product: Identifiable, Hashable {
     var productId: String = ""
     var quantity: Int = 1
     var category: JewelleryType = .ring
+    
+    init() { }
+    
+    init(name: String, price: Double, assets: [CKAsset], description: String, productId: String, quantity: Int, category: JewelleryType) {
+        self.name = name
+        self.price = price
+        self.assets = assets
+        self.description = description
+        self.productId = productId
+        self.quantity = quantity
+        self.category = category
+    }
+    
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.productId == rhs.productId
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(productId)
+    }
     
     func toDictionary() -> [String: Any] {
         return [
@@ -50,24 +70,16 @@ struct Product: Identifiable, Hashable {
         return Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: category)!)
     }
     
-    var displayImage: UIImage? {
-        guard let url = assets.first?.fileURL else { return nil }
-        guard let data = try? Data(contentsOf: url) else { return nil }
-        
-        return UIImage(data: data)
+    var displayImage: UIImage? {        
+        return assets.first?.toUiImage()
     }
     
     var images: [UIImage] {
         var images = [UIImage]()
         for asset in assets {
-            guard let url = asset.fileURL else {
-                continue
+            if let uiimage = asset.toUiImage() {
+                images.append(uiimage)
             }
-            guard let data = try? Data(contentsOf: url) else {
-                continue
-            }
-            
-            images.append(UIImage(data: data)!)
         }
         return images
     }

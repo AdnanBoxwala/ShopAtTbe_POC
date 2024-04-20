@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CatalogView: View {
     @State var viewModel = ViewModel()
-    
     @State private var linkedProduct: Product?    
+    
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]

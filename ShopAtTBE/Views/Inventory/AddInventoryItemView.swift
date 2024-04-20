@@ -5,79 +5,22 @@
 //  Created by Adnan Boxwala on 24.02.24.
 //
 
+import CloudKit
 import PhotosUI
 import SwiftUI
 
 struct AddInventoryItemView: View {
-    @Environment(UpdateInventoryView.ViewModel.self) var viewModel
-    @FocusState private var editorIsFocussed: Bool
-        
+    @Environment(ManageInventoryView.ViewModel.self) var viewModel
+    
+    @State private var newRecord: ManageInventoryView.FetchedRecord = .init(name: "", price: 0.0, assets: [], description: "", productId: "", quantity: 1, category: .all, recordId: CKRecord.ID.init(recordName: "newRecord"))
+            
     var body: some View {
         @Bindable var viewModel = viewModel
         ZStack {
-            Form {
-                Section {
-                    TextField("Name", text: $viewModel.product.name)
-                        .focused($editorIsFocussed)
-                        .textInputAutocapitalization(.words)
-                    
-                    Picker("Jewellery type", selection: $viewModel.product.category) {
-                        ForEach(JewelleryType.allCases, id: \.self) {
-                            Text($0.rawValue)
-                        }
-                    }
-                    
-                    TextField("Product ID", text: $viewModel.product.productId)
-                        .focused($editorIsFocussed)
-                        .textInputAutocapitalization(.characters)
-                        .autocorrectionDisabled()
-                } header: {
-                    Text("Product details")
-                }
-                
-                // TODO: needs to be fixed
-                TextField("Price", value: $viewModel.product.price, formatter: currencyFormatter)
-                    .keyboardType(.decimalPad)
-                    .focused($editorIsFocussed)
-                
-                Picker("Quantity", selection: $viewModel.product.quantity) {
-                    ForEach(1..<11, id: \.self) {
-                        Text("\($0)")
-                    }
-                }
-                
-                Section {
-                    TextField("Enter here...", text: $viewModel.product.description, axis: .vertical)
-                        .lineLimit(5)
-                        .focused($editorIsFocussed)
-                        .textInputAutocapitalization(.sentences)
-                        .autocorrectionDisabled(false)
-                } header: {
-                    Text("Description")
-                }
-                
-                Section {
-                    PhotosPicker("Search in Photos", selection: $viewModel.photoPickerItems, maxSelectionCount: 3, matching: .any(of: [.images, .screenshots]))
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(viewModel.imageData, id: \.self) { data in
-                                if let uiImage = UIImage(data: data) {
-                                    Image(uiImage: uiImage)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 75, height: 75)
-                                        .clipped()
-                                }
-                            }
-                            .disabled(viewModel.imageData.isEmpty)
-                        }
-                    }
-                } header: {
-                    Text("Add images")
-                }
-                .listRowSeparator(.hidden)
+            VStack {
+                ProductFormView(record: $newRecord)
             }
-            .opacity((viewModel.isUploading) ? 0.5 : 1)
+                .opacity((viewModel.isUploading) ? 0.5 : 1)
             
             if viewModel.isUploading {
                 ProgressView("Uploading your product")
@@ -87,24 +30,21 @@ struct AddInventoryItemView: View {
                 UploadSuccessView()
             }
         }
-        .navigationTitle("New Product")
-        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") {
-                    editorIsFocussed = false
-                }
-            }
-            
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button("Upload") {
                     // save to iCloud
                     Task {
-                        viewModel.saveToCloud()
+                        viewModel.uploadToDatabase(name: newRecord.name,
+                                                   category: newRecord.category,
+                                                   productId: newRecord.productId,
+                                                   price: newRecord.price,
+                                                   quantity: newRecord.quantity,
+                                                   description: newRecord.description,
+                                                   assets: newRecord.assets)
                     }
                 }
-                .disabled(viewModel.product.isEntryValid)
+                .disabled(newRecord.name.trimmingCharacters(in: .whitespaces).isEmpty || newRecord.productId.trimmingCharacters(in: .whitespaces).isEmpty || newRecord.assets.isEmpty)
             }
         }
     }
@@ -112,5 +52,5 @@ struct AddInventoryItemView: View {
 
 #Preview {
     AddInventoryItemView()
-        .environment(UpdateInventoryView.ViewModel())
+        .environment(ManageInventoryView.ViewModel())
 }

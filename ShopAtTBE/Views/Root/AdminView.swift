@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct AdminView: View {
-    @State var viewModel = UpdateInventoryView.ViewModel()
+    @State var viewModel = ManageInventoryView.ViewModel()
     let user: ButterflyEffect.User
     
     var body: some View {
         TabView {
-            UpdateInventoryView()
+            ManageInventoryView()
                 .tabItem { Label("Inventory", systemImage: "archivebox.fill")}
             ProfileView(user: user)
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }

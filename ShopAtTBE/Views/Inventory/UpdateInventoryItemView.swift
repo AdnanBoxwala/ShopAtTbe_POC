@@ -10,46 +10,60 @@ import SwiftUI
 
 struct UpdateInventoryItemView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
-    @State var record: ManageInventoryView.ProductRecord
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var record: ManageInventoryView.ProductRecord
+    @State private var isUpdating = false
         
     // TODO: go back to previous view
     var body: some View {
-        VStack {
-            ProductFormView(record: $record)
-            
-            Button("Delete", role: .destructive) {
-                viewModel.removeRecord(record.recordId)
+        ZStack {
+            VStack {
+                ProductFormView(record: record)
+                    .opacity(isUpdating || viewModel.isUploaded ? 0.5 : 1)
+                
+                Button("Remove from Database", role: .destructive) {
+                    viewModel.removeRecord(record.recordId)
+                }
+                .padding(.vertical)
+                .buttonStyle(BorderedProminentButtonStyle())
             }
-            .padding()
-            .background(Color.red)
-            .foregroundStyle(Color.white)
-            .clipShape(RoundedRectangle(cornerRadius: 5))
+            
+            ProgressView("Updating product details in Database")
+                .opacity(isUpdating ? 1.0 : 0)
+            
+            UploadSuccessView()
+                .opacity(viewModel.isUploaded ? 1.0 : 0)
+                .animation(.easeIn, value: viewModel.isUploaded)
+                .onChange(of: viewModel.isUploaded) { _, newValue in
+                    if newValue == true {
+                        isUpdating = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            viewModel.isUploaded = false
+                            dismiss()
+                        }
+                    }
+                }
         }
         .navigationTitle(record.productId)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
+                // TODO: disable button if nothing changed
                 Button("Update") {
-                    // save to iCloud
+                    isUpdating = true
+                    // update exisitng product in iCloud database
                     Task {
                         viewModel.updateRecord(record)
                     }
                 }
-                .disabled(record.name.trimmingCharacters(in: .whitespaces).isEmpty || record.productId.trimmingCharacters(in: .whitespaces).isEmpty || record.assets.isEmpty)
             }
         }
 
     }
     
     init(record: ManageInventoryView.ProductRecord) {
-        self.record = .init(name: record.name,
-                            price: record.price,
-                            assets: record.assets,
-                            description: record.description,
-                            productId: record.productId,
-                            quantity: record.quantity,
-                            category: record.category,
-                            recordId: record.recordId)
+        self._record = .init(initialValue: record)
     }
 }
 

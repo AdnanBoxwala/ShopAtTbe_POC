@@ -8,28 +8,23 @@
 import SwiftUI
 
 struct UploadSuccessView: View {
-    @State private var opacity = 1.0
     
     var body: some View {
         Rectangle()
             .frame(width: 150, height: 150)
             .foregroundStyle(Color.gray)
+            .opacity(0.4)
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .overlay {
                 VStack {
-                    Text("Uploaded!")
+                    Text("Done!")
+                        .foregroundStyle(Color.green)
+                        .bold()
                         .font(.title2)
                     Image(systemName: "checkmark.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
                         .foregroundStyle(.green)
-                }
-            }
-            .opacity(opacity)
-            .animation(.easeIn, value: opacity)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    opacity = 0
                 }
             }
     }

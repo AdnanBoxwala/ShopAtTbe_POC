@@ -33,7 +33,7 @@ struct BasketItemView: View {
                     } label: {
                         Text("Qty: \(item.quantity) \u{2304}")
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(BorderedButtonStyle())
                     .foregroundStyle(Color.primary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -11,49 +11,56 @@ import SwiftUI
 
 struct AddInventoryItemView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
+    @Environment(\.dismiss) var dismiss
     
-    @State private var newRecord: ManageInventoryView.ProductRecord
+    @State private var newRecord: ManageInventoryView.ProductRecord = .init()
+    @State private var isUploading = false
             
     var body: some View {
         ZStack {
-            VStack {
-                ProductFormView(record: $newRecord)
-            }
-                .opacity((viewModel.isUploading) ? 0.5 : 1)
+            ProductFormView(record: newRecord)
+                .opacity(isUploading || viewModel.isUploaded ? 0.5 : 1)
             
-            if viewModel.isUploading {
-                ProgressView("Uploading your product")
-            }
+            ProgressView("Adding new product to Database")
+                .opacity(isUploading ? 1.0 : 0)
             
-            if viewModel.isUploaded {
-                UploadSuccessView()
-            }
+            UploadSuccessView()
+                .opacity(viewModel.isUploaded ? 1.0 : 0)
+                .animation(.easeIn, value: viewModel.isUploaded)
+                .onChange(of: viewModel.isUploaded) { _, newValue in
+                    if newValue == true {
+                        isUploading = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            viewModel.isUploaded = false
+                            newRecord = .init()
+                            dismiss()
+                        }
+                    }
+                }
         }
+        .navigationTitle("New Product")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 Button("Upload") {
-                    // save to iCloud
-                    Task {
-                        viewModel.uploadToDatabase(name: newRecord.name,
-                                                   category: newRecord.category,
-                                                   productId: newRecord.productId,
-                                                   price: newRecord.price,
-                                                   quantity: newRecord.quantity,
-                                                   description: newRecord.description,
-                                                   assets: newRecord.assets)
-                    }
+                    isUploading = true
+                    // save new product to iCloud database
+                    viewModel.uploadToDatabase(name: newRecord.name,
+                                                            category: newRecord.category,
+                                                            productId: newRecord.productId,
+                                                            price: newRecord.price,
+                                                            quantity: newRecord.quantity,
+                                                            description: newRecord.description,
+                                                            assets: newRecord.assets)
+                    
                 }
                 .disabled(newRecord.name.trimmingCharacters(in: .whitespaces).isEmpty || newRecord.productId.trimmingCharacters(in: .whitespaces).isEmpty || newRecord.assets.isEmpty)
             }
         }
     }
-    
-    init(newRecord: ManageInventoryView.ProductRecord) {
-        self._newRecord = State(initialValue: newRecord)
-    }
 }
 
 #Preview {
-    AddInventoryItemView(newRecord: .init())
+    AddInventoryItemView()
         .environment(ManageInventoryView.ViewModel())
 }

@@ -71,8 +71,8 @@ extension ManageInventoryView {
         private var assetUrls: [URL] = []
         
         private(set) var items = [ProductRecord]()
-        private(set) var isUploading = false
-        private(set) var isUploaded = false
+        var isUploaded = false
+        var uploadFailed = false
         
 //        var product = Product()
         
@@ -106,40 +106,41 @@ extension ManageInventoryView {
         func uploadToDatabase(name: String, category: JewelleryType, 
                               productId: String, price: Double, quantity: Int,
                               description: String, assets: [CKAsset]) {
-            isUploaded = false
-            isUploading = true
+            self.isUploaded = false
+            self.uploadFailed = false
+            
             let record = CKRecord(recordType: RecordType.product.rawValue)
             
-            Task {
-                self.product = Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: category)
-                record.setValuesForKeys(self.product.toDictionary())
-                
-                // saving record in database
-                DispatchQueue.main.async {
-                    self.database.save(record) { newRecord, error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        } else {
-                            if let _ = newRecord {
-                                self.product = Product()
-                                self.assetUrls.removeAll()
-                                self.isUploading = false
-                                self.isUploaded = true
-                            }
-                        }
+            self.product = Product(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: category)
+            record.setValuesForKeys(self.product.toDictionary())
+            
+            // saving record in database
+            self.database.save(record) { newRecord, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    self.uploadFailed = true
+                } else {
+                    if let newRecord = newRecord {
+                        self.product = Product()
+                        self.assetUrls.removeAll()
+                        self.isUploaded = true
+                        self.items.append(ProductRecord.parseFrom(newRecord)!)
                     }
                 }
             }
+            
+            // TODO: update self.items
         }
         
         func updateRecord(_ record: ProductRecord) {
+            self.isUploaded = false
+            self.uploadFailed = false
+            
             self.database.fetch(withRecordID: record.recordId) { fetchedRecord, error in
                 if let error = error {
                     print(error.localizedDescription)
                     return
-                }
-                
-                if let fetchedRecord = fetchedRecord {
+                } else if let fetchedRecord = fetchedRecord {
                     fetchedRecord["name"] = record.name
                     fetchedRecord["price"] = record.price
                     fetchedRecord["assets"] = record.assets
@@ -151,10 +152,11 @@ extension ManageInventoryView {
                     self.database.save(fetchedRecord) { uploadedRecord, error in
                         if let error = error {
                             print(error.localizedDescription)
-                        }
-                        if let _ = uploadedRecord {
+                            self.uploadFailed = true
+                        } else if let _ = uploadedRecord {
                             self.items.remove(at: self.items.firstIndex(where: { $0.recordId == fetchedRecord.recordID })!)
                             self.items.append(record)
+                            self.isUploaded = true
                         }
                     }
                 } else { return }

@@ -10,11 +10,7 @@ import SwiftUI
 
 struct UpdateInventoryItemView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
-    @State var record: ManageInventoryView.FetchedRecord
-    
-    init(record: ManageInventoryView.FetchedRecord) {
-        self._record = State(initialValue: record)
-    }
+    @State var record: ManageInventoryView.ProductRecord
         
     // TODO: go back to previous view
     var body: some View {
@@ -36,7 +32,7 @@ struct UpdateInventoryItemView: View {
                 Button("Update") {
                     // save to iCloud
                     Task {
-                        viewModel.updateRecord()
+                        viewModel.updateRecord(record)
                     }
                 }
                 .disabled(record.name.trimmingCharacters(in: .whitespaces).isEmpty || record.productId.trimmingCharacters(in: .whitespaces).isEmpty || record.assets.isEmpty)
@@ -44,9 +40,20 @@ struct UpdateInventoryItemView: View {
         }
 
     }
+    
+    init(record: ManageInventoryView.ProductRecord) {
+        self.record = .init(name: record.name,
+                            price: record.price,
+                            assets: record.assets,
+                            description: record.description,
+                            productId: record.productId,
+                            quantity: record.quantity,
+                            category: record.category,
+                            recordId: record.recordId)
+    }
 }
 
 #Preview {
-    UpdateInventoryItemView(record: ManageInventoryView.FetchedRecord(name: "", price: 0.0, assets: [], description: "", productId: "", quantity: 1, category: .ring, recordId: CKRecord.ID.init(recordName: "test")))
+    UpdateInventoryItemView(record: .init())
         .environment(ManageInventoryView.ViewModel())
 }

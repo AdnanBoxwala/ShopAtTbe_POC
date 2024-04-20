@@ -14,7 +14,7 @@ import SwiftUI
 extension ManageInventoryView {
     
     @Observable
-    class FetchedRecord {
+    class ProductRecord {
         var name: String
         var price: Double
         var assets: [CKAsset]
@@ -23,6 +23,17 @@ extension ManageInventoryView {
         var quantity: Int
         var category: JewelleryType
         var recordId: CKRecord.ID
+        
+        init() {
+            self.name = ""
+            self.price = 0.0
+            self.assets = []
+            self.description = ""
+            self.productId = ""
+            self.quantity = 1
+            self.category = .ring
+            self.recordId = .init()
+        }
         
         init(name: String, price: Double, assets: [CKAsset], description: String, productId: String, quantity: Int, category: JewelleryType, recordId: CKRecord.ID) {
             self.name = name
@@ -35,7 +46,7 @@ extension ManageInventoryView {
             self.recordId = recordId
         }
         
-        static func parseFrom(_ record: CKRecord) -> FetchedRecord? {
+        static func parseFrom(_ record: CKRecord) -> ProductRecord? {
             guard let name = record.value(forKey: "name") as? String,
                   let price = record.value(forKey: "price") as? Double,
                   let assets = record.value(forKey: "assets") as? [CKAsset],
@@ -47,7 +58,7 @@ extension ManageInventoryView {
                 return nil
             }
             
-            return FetchedRecord(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: category) ?? .all, recordId: record.recordID)
+            return ProductRecord(name: name, price: price, assets: assets, description: description, productId: productId, quantity: quantity, category: JewelleryType(rawValue: category) ?? .all, recordId: record.recordID)
         }
     }
     
@@ -59,7 +70,7 @@ extension ManageInventoryView {
         private var container: CKContainer
         private var assetUrls: [URL] = []
         
-        private(set) var items = [FetchedRecord]()
+        private(set) var items = [ProductRecord]()
         private(set) var isUploading = false
         private(set) var isUploaded = false
         
@@ -121,8 +132,33 @@ extension ManageInventoryView {
             }
         }
         
-        func updateRecord() {
-            print("Update record.")
+        func updateRecord(_ record: ProductRecord) {
+            self.database.fetch(withRecordID: record.recordId) { fetchedRecord, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                if let fetchedRecord = fetchedRecord {
+                    fetchedRecord["name"] = record.name
+                    fetchedRecord["price"] = record.price
+                    fetchedRecord["assets"] = record.assets
+                    fetchedRecord["description"] = record.description
+                    fetchedRecord["productId"] = record.productId
+                    fetchedRecord["quantity"] = record.quantity
+                    fetchedRecord["category"] = record.category.rawValue
+                    
+                    self.database.save(fetchedRecord) { uploadedRecord, error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        if let _ = uploadedRecord {
+                            self.items.remove(at: self.items.firstIndex(where: { $0.recordId == fetchedRecord.recordID })!)
+                            self.items.append(record)
+                        }
+                    }
+                } else { return }
+            }
         }
         
         func removeRecord(_ recordId: CKRecord.ID) {
@@ -149,7 +185,7 @@ extension ManageInventoryView {
                         .forEach {
                             switch $0 {
                             case .success(let record):
-                                if let fetchedRecord = FetchedRecord.parseFrom(record) {
+                                if let fetchedRecord = ProductRecord.parseFrom(record) {
                                     self.items.append(fetchedRecord)
                                 }
                             case .failure(let error):

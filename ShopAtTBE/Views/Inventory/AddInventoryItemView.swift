@@ -12,10 +12,9 @@ import SwiftUI
 struct AddInventoryItemView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
     
-    @State private var newRecord: ManageInventoryView.FetchedRecord = .init(name: "", price: 0.0, assets: [], description: "", productId: "", quantity: 1, category: .all, recordId: CKRecord.ID.init(recordName: "newRecord"))
+    @State private var newRecord: ManageInventoryView.ProductRecord
             
     var body: some View {
-        @Bindable var viewModel = viewModel
         ZStack {
             VStack {
                 ProductFormView(record: $newRecord)
@@ -48,9 +47,13 @@ struct AddInventoryItemView: View {
             }
         }
     }
+    
+    init(newRecord: ManageInventoryView.ProductRecord) {
+        self._newRecord = State(initialValue: newRecord)
+    }
 }
 
 #Preview {
-    AddInventoryItemView()
+    AddInventoryItemView(newRecord: .init())
         .environment(ManageInventoryView.ViewModel())
 }

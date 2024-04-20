@@ -11,29 +11,10 @@ import SwiftUI
 
 struct ProductFormView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
+    @Binding var record: ManageInventoryView.ProductRecord
+    
     @FocusState private var editorIsFocussed: Bool
-    
-//    @State var name: String
-//    @State var category: JewelleryType
-//    @State var productId: String
-//    @State var price: Double
-//    @State var quantity: Int
-//    @State var description: String
-//    @State var assets: [CKAsset]
-    
-    @Binding var record: ManageInventoryView.FetchedRecord
-    
     @State var selectedItems: [PhotosPickerItem] = []
-    
-//    init(record: ManageInventoryView.FetchedRecord?) {
-//        name = record?.name ?? ""
-//        category = record?.category ?? .ring
-//        productId = record?.productId ?? ""
-//        price = record?.price ?? 0.0
-//        quantity = record?.quantity ?? 1
-//        description = record?.description ?? ""
-//        self._assets = State(initialValue: record?.assets ?? [])
-//    }
     
     var body: some View {
         Form {
@@ -132,6 +113,6 @@ struct ProductFormView: View {
 
 
 #Preview {
-    ProductFormView(record: .constant(ManageInventoryView.FetchedRecord(name: "", price: 0.0, assets: [], description: "", productId: "", quantity: 1, category: .all, recordId: CKRecord.ID.init(recordName: "record"))))
+    ProductFormView(record: .constant(.init()))
         .environment(ManageInventoryView.ViewModel())
 }

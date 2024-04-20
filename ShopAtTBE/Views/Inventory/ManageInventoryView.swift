@@ -11,6 +11,7 @@ import SwiftUI
 struct ManageInventoryView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
     
+    @State private var newRecord: ProductRecord = .init()
     @State private var searchText = ""
     @State private var showAddItemSheet = false
     
@@ -27,7 +28,7 @@ struct ManageInventoryView: View {
                             }
                         }
                     } header: {
-                        Text(category.rawValue)
+                        Text(category.rawValue) 
                     }
                     .isHidden(viewModel.isCategoryEmpty(category))
                 }
@@ -35,7 +36,7 @@ struct ManageInventoryView: View {
             .navigationTitle("Inventory")
             .sheet(isPresented: $showAddItemSheet){
                 NavigationStack {
-                    AddInventoryItemView()
+                    AddInventoryItemView(newRecord: newRecord)
                 }
             }
             .toolbar {
@@ -60,7 +61,7 @@ struct ManageInventoryView: View {
         .environment(viewModel)
     }
     
-    var searchResults: [ManageInventoryView.FetchedRecord] {
+    var searchResults: [ManageInventoryView.ProductRecord] {
         if searchText.isEmpty {
             return viewModel.items
         } else {

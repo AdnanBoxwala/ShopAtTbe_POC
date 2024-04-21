@@ -49,13 +49,13 @@ struct ManageInventoryView: View {
                 
             }
         }
+        .environment(viewModel)
         .onAppear {
             if viewModel.items.isEmpty {
                 viewModel.getAllItems()
             }
         }
         .searchable(text: $searchText)
-        .environment(viewModel)
     }
     
     var searchResults: [Product] {

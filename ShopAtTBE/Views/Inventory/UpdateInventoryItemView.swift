@@ -14,49 +14,69 @@ struct UpdateInventoryItemView: View {
     
     @State private var record: Product
     @State private var isUpdating = false
+    @State private var deleteRecord = false
         
     // TODO: go back to previous view
     var body: some View {
+        @Bindable var viewModel = viewModel
         ZStack {
-            VStack {
-                ProductFormView(record: record)
-                    .opacity(isUpdating || viewModel.isUploaded ? 0.5 : 1)
-                
-                Button("Remove from Database", role: .destructive) {
-                    viewModel.removeRecord(record.recordId)
-                }
-                .padding(.vertical)
-                .buttonStyle(BorderedProminentButtonStyle())
+            ProductFormView(record: record)
+                .opacity(isUpdating || viewModel.uploadSuccess ? 0.5 : 1)
+            
+            if isUpdating && !viewModel.uploadFailure {
+                ProgressView("Updating product details in Database")
             }
             
-            ProgressView("Updating product details in Database")
-                .opacity(isUpdating ? 1.0 : 0)
-            
-            UploadSuccessView()
-                .opacity(viewModel.isUploaded ? 1.0 : 0)
-                .animation(.easeIn, value: viewModel.isUploaded)
-                .onChange(of: viewModel.isUploaded) { _, newValue in
-                    if newValue == true {
+            if viewModel.uploadSuccess {
+                UploadSuccessView()
+                    .animation(.easeIn(duration: 1), value: viewModel.uploadSuccess)
+                    .onAppear {
                         isUpdating = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            viewModel.isUploaded = false
+                            viewModel.uploadSuccess = false
                             dismiss()
                         }
                     }
-                }
+            }
         }
-        .navigationTitle(record.productId)
+        .alert("Failed!", isPresented: $viewModel.uploadFailure) {
+            Button("Retry") {
+                isUpdating = false
+            }
+            Button("Cancel", role: .cancel) {
+                isUpdating = false
+                dismiss()
+            }
+        } message: {
+            Text("Could not update product details. Please try again.")
+        }
+        .alert("Remove product", isPresented: $deleteRecord) {
+            Button("Cancel", role: .cancel) { }
+            Button("Delete", role: .destructive) {
+                viewModel.removeRecord(record.recordId)
+            }
+        } message: {
+            Text("Are you sure you want to remove \(record.name) from inventory?")
+        }
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle(record.productId)
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
                 // TODO: disable button if nothing changed
                 Button("Update") {
                     isUpdating = true
-                    // update exisitng product in iCloud database
+                    // update exisitng product in inventory
                     Task {
                         viewModel.updateRecord(record)
                     }
                 }
+            }
+            
+            ToolbarItemGroup(placement: .bottomBar) {
+                Button("Remove", role: .destructive) {
+                    deleteRecord = true
+                }
+                .buttonStyle(BorderedButtonStyle())
             }
         }
     }

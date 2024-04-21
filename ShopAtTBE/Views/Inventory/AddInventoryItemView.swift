@@ -15,37 +15,50 @@ struct AddInventoryItemView: View {
     
     @State private var product: Product = .init()
     @State private var isUploading = false
+    @State private var showFailureAlert = false
     
     var body: some View {
+        @Bindable var viewModel = viewModel
         ZStack {
             ProductFormView(record: product)
-                .opacity(isUploading || viewModel.isUploaded ? 0.5 : 1)
+                .opacity(isUploading || viewModel.uploadSuccess ? 0.5 : 1)
             
-            ProgressView("Adding new product to Database")
-                .opacity(isUploading ? 1.0 : 0)
+            if isUploading && !viewModel.uploadFailure {
+                ProgressView("Adding new product to Database")
+            }
             
-            UploadSuccessView()
-                .opacity(viewModel.isUploaded ? 1.0 : 0)
-                .animation(.easeIn, value: viewModel.isUploaded)
-                .onChange(of: viewModel.isUploaded) { _, newValue in
-                    if newValue == true {
+            if viewModel.uploadSuccess {
+                UploadSuccessView()
+                    .animation(.easeIn(duration: 1), value: viewModel.uploadSuccess)
+                    .onAppear {
                         isUploading = false
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            viewModel.isUploaded = false
+                            viewModel.uploadSuccess = false
                             product = .init()
                             dismiss()
                         }
                     }
-                }
+            }
         }
-        .navigationTitle("New Product")
+        .alert("Failed!", isPresented: $viewModel.uploadFailure) {
+            Button("Retry") {
+                isUploading = false
+            }
+            Button("Cancel", role: .cancel) {
+                isUploading = false
+                dismiss()
+            }
+        } message: {
+            Text("Could not add product to inventory. Please try again.")
+        }
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("New Product")
         .toolbar {
             ToolbarItemGroup(placement: .topBarTrailing) {
-                Button("Upload") {
+                Button("Add") {
                     isUploading = true
                     // save new product to iCloud database
-                    viewModel.uploadToDatabase(product)
+                    viewModel.addRecord(product)
                     
                 }
                 .disabled(product.name.trimmingCharacters(in: .whitespaces).isEmpty || product.productId.trimmingCharacters(in: .whitespaces).isEmpty || product.assets.isEmpty)

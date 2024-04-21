@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    let user: ButterflyEffect.User
+    let user: User
     var isAnonymous: Bool = false
     
     var body: some View {
@@ -26,16 +26,16 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(user: ButterflyEffect.MOCK_USER)
+    ProfileView(user: User.MOCK_USER)
         .environment(AuthViewModel())
 }
 
 #Preview {
-    ProfileView(user: ButterflyEffect.MOCK_USER, isAnonymous: true)
+    ProfileView(user: User.MOCK_USER, isAnonymous: true)
         .environment(AuthViewModel())
 }
 
 #Preview {
-    ProfileView(user: ButterflyEffect.MOCK_ADMIN)
+    ProfileView(user: User.MOCK_ADMIN)
         .environment(AuthViewModel())
 }

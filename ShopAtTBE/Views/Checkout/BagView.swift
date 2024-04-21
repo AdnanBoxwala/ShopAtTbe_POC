@@ -1,5 +1,5 @@
 //
-//  CheckoutView.swift
+//  BagView.swift
 //  ShopAtTBE
 //
 //  Created by Adnan Boxwala on 14.02.24.
@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct BasketView: View {
+struct BagView: View {
     @Environment(CustomerView.ViewModel.self) var customerViewModel
     
     var body: some View {
         NavigationStack {
-            if customerViewModel.basket.isEmpty {
+            if customerViewModel.bag.isEmpty {
                 ContentUnavailableView("", systemImage: "handbag", description: Text("Your Bag is Empty.\nWhen you add products, they'll\nappear here."))
             } else {
                 VStack {
                     List {
-                        ForEach(customerViewModel.basket, id: \.productId) { basketItem in
-                            BasketItemView(item: basketItem)
+                        ForEach(customerViewModel.bag, id: \.productId) { bagItem in
+                            BagItemView(item: bagItem)
                         }
-                        .onDelete(perform: customerViewModel.removeBasketItem)
+                        .onDelete(perform: customerViewModel.removeBagItem)
                         
                         HStack {
                             Text("Total: ")
@@ -31,7 +31,7 @@ struct BasketView: View {
                         }
                     }
                 }
-                .navigationTitle("Basket")
+                .navigationTitle("Bag")
             }
         }
     }
@@ -40,6 +40,6 @@ struct BasketView: View {
 }
 
 #Preview {
-    BasketView()
+    BagView()
         .environment(CustomerView.ViewModel())
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GuestProfileView: View {
-    let user: ButterflyEffect.User
+    let user: User
     
     var body: some View {
         NavigationStack {
@@ -36,6 +36,6 @@ struct GuestProfileView: View {
 }
 
 #Preview {
-    GuestProfileView(user: ButterflyEffect.MOCK_USER)
+    GuestProfileView(user: User.MOCK_USER)
         .environment(AuthViewModel())
 }

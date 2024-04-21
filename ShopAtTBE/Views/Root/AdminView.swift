@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdminView: View {
     @State var viewModel = ManageInventoryView.ViewModel()
-    let user: ButterflyEffect.User
+    let user: User
     
     var body: some View {
         TabView {
@@ -23,6 +23,6 @@ struct AdminView: View {
 }
 
 #Preview {
-    AdminView(user: ButterflyEffect.MOCK_ADMIN)
+    AdminView(user: User.MOCK_ADMIN)
         .environment(AuthViewModel())
 }

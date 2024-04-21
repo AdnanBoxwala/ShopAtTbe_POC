@@ -56,7 +56,7 @@ struct ProductDetailView: View {
                     }
                     
                     Button {
-                        customerViewModel.addToBasket(item: item, quantity: 1)
+                        customerViewModel.addToBag(item: item, quantity: 1)
                     } label: {
                         Text("Add to Bag")
                             .font(.title2)

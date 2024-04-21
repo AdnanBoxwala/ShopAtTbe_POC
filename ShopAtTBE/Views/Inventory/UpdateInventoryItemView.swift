@@ -12,7 +12,7 @@ struct UpdateInventoryItemView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
     @Environment(\.dismiss) var dismiss
     
-    @State private var record: ManageInventoryView.ProductRecord
+    @State private var record: Product
     @State private var isUpdating = false
         
     // TODO: go back to previous view
@@ -59,11 +59,18 @@ struct UpdateInventoryItemView: View {
                 }
             }
         }
-
     }
     
-    init(record: ManageInventoryView.ProductRecord) {
-        self._record = .init(initialValue: record)
+    init(record: Product) {
+        self.record = .init()
+        self.record.assets = record.assets
+        self.record.category = record.category
+        self.record.description = record.description
+        self.record.name = record.name
+        self.record.price = record.price
+        self.record.productId = record.productId
+        self.record.quantity = record.quantity
+        self.record.recordId = record.recordId
     }
 }
 

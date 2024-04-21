@@ -11,7 +11,7 @@ struct CustomerView: View {
     @State var viewModel = ViewModel()
     @State private var selectedTab = "Catalog"
     
-    let user: ButterflyEffect.User
+    let user: User
     let isAnonymous: Bool
     
     var body: some View {
@@ -19,9 +19,9 @@ struct CustomerView: View {
             CatalogView()
                 .tabItem { Label("T.B.E", systemImage: "house") }
                 .tag("Catalog")
-            BasketView()
+            BagView()
                 .tabItem { Label("Bag", systemImage: "handbag.fill") }
-                .tag("Basket")
+                .tag("Bag")
             ProfileView(user: user, isAnonymous: isAnonymous)
                 .tabItem { Label("Profile", systemImage: "person.circle.fill") }
                 .tag("Profile")
@@ -36,6 +36,6 @@ struct CustomerView: View {
 }
 
 #Preview {
-    CustomerView(user: ButterflyEffect.MOCK_USER, isAnonymous: false)
+    CustomerView(user: User.MOCK_USER, isAnonymous: false)
         .environment(AuthViewModel())
 }

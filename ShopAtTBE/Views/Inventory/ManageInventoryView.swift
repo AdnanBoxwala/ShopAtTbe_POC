@@ -58,7 +58,7 @@ struct ManageInventoryView: View {
         .environment(viewModel)
     }
     
-    var searchResults: [ManageInventoryView.ProductRecord] {
+    var searchResults: [Product] {
         if searchText.isEmpty {
             return viewModel.items
         } else {

@@ -12,7 +12,7 @@ import Foundation
 //@MainActor
 @Observable class AuthViewModel {
     var loggedInUser: FirebaseAuth.User?
-    var butterflyEffectUser: ButterflyEffect.User?
+    var butterflyEffectUser: User?
     
     init() {
         self.loggedInUser = Auth.auth().currentUser
@@ -41,7 +41,7 @@ import Foundation
             }
             
             self.loggedInUser = result.user
-            self.butterflyEffectUser = ButterflyEffect.User(id: result.user.uid, firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "", role: .customer, orderHistory: [])
+            self.butterflyEffectUser = User(id: result.user.uid, firstName: "Guest", lastName: "User", dateOfBirth: .now, emailId: "", role: .customer, orderHistory: [])
         }
     }
     
@@ -49,7 +49,7 @@ import Foundation
         do {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.loggedInUser = result.user
-            let user = ButterflyEffect.User(id: result.user.uid, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, emailId: email, role: .customer, orderHistory: [])
+            let user = User(id: result.user.uid, firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, emailId: email, role: .customer, orderHistory: [])
             let encodedUser = try Firestore.Encoder().encode(user)
             try await Firestore.firestore().collection("users").document(user.id).setData(encodedUser)
             await fetchUser()
@@ -81,7 +81,7 @@ import Foundation
             return
         }
         
-        self.butterflyEffectUser = try? snapshot.data(as: ButterflyEffect.User.self)
+        self.butterflyEffectUser = try? snapshot.data(as: User.self)
         
         print("DEBUG: Current user is \(String(describing: self.butterflyEffectUser?.firstName)) \(String(describing: self.butterflyEffectUser?.lastName))")
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {    
-    let butterflyEffectUser: ButterflyEffect.User
+    let butterflyEffectUser: User
     let isAnonymous: Bool
     
     var body: some View {
@@ -22,6 +22,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(butterflyEffectUser: ButterflyEffect.MOCK_USER, isAnonymous: false)
+    ContentView(butterflyEffectUser: User.MOCK_USER, isAnonymous: false)
         .environment(AuthViewModel())
 }

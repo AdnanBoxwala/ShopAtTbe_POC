@@ -11,7 +11,7 @@ import SwiftUI
 
 struct ProductFormView: View {
     @Environment(ManageInventoryView.ViewModel.self) var viewModel
-    @Bindable var record: ManageInventoryView.ProductRecord
+    @Bindable var record: Product
     
     @FocusState private var editorIsFocussed: Bool
     @State var selectedItems: [PhotosPickerItem] = []

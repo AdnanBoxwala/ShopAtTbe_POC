@@ -12,35 +12,35 @@ import SwiftUI
 extension CustomerView {
     @Observable
     class ViewModel {
-        var basket: [BasketItem] = []
+        var bag: [BagItem] = []
         
         var totalCost: Double {
             var finalCost = 0.0
-            for item in basket {
+            for item in bag {
                 finalCost += item.price * Double(item.quantity)
             }
             return finalCost
         }
         
-        func addToBasket(item: Product, quantity: Int) {
-            if let index = basket.firstIndex(where: {$0.productId == item.productId}) {
-                basket[index].quantity += 1
+        func addToBag(item: Product, quantity: Int) {
+            if let index = bag.firstIndex(where: {$0.productId == item.productId}) {
+                bag[index].quantity += 1
             } else {
-                let basketItem = BasketItem(displayImage: item.displayImage ?? UIImage(named: "placeholder_tbe")!,
+                let bagItem = BagItem(displayImage: item.displayImage ?? UIImage(named: "placeholder_tbe")!,
                                             name: item.name,
                                             price: item.price,
                                             productId: item.productId,
                                             quantity: quantity)
-                basket.append(basketItem)
+                bag.append(bagItem)
             }
         }
         
-        func removeBasketItem(at offsets: IndexSet) {
-            let productId = basket[offsets.first!].productId
-            guard let idx = basket.firstIndex(where: { $0.productId == productId }) else {
+        func removeBagItem(at offsets: IndexSet) {
+            let productId = bag[offsets.first!].productId
+            guard let idx = bag.firstIndex(where: { $0.productId == productId }) else {
                 return
             }
-            basket.remove(at: idx)
+            bag.remove(at: idx)
         }
         
         func isValidUrlScheme(_ url: URL) -> Bool {

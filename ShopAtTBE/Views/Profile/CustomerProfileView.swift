@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CustomerProfileView: View {
     @Environment(AuthViewModel.self) var authViewModel
-    let user: ButterflyEffect.User
+    let user: User
     
     var body: some View {
         NavigationStack {
@@ -66,6 +66,6 @@ struct CustomerProfileView: View {
 }
 
 #Preview {
-    CustomerProfileView(user: ButterflyEffect.MOCK_USER)
+    CustomerProfileView(user: User.MOCK_USER)
         .environment(AuthViewModel())
 }

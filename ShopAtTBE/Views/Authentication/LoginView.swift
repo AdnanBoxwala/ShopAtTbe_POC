@@ -51,6 +51,7 @@ struct LoginView: View {
                 
                 Button {
                     Task {
+                        // TODO: handle errors
                         try await authViewModel.signIn(withEmail: emailId, password: password)
                     }
                 } label: {

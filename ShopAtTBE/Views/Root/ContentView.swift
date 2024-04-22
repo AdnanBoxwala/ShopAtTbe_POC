@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {    
+struct ContentView: View {
     let butterflyEffectUser: User
     let isAnonymous: Bool
     

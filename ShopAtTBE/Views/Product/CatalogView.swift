@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CatalogView: View {
     @State var viewModel = ViewModel()
-    @State private var linkedProduct: Product?    
     
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -55,9 +54,9 @@ struct CatalogView: View {
                 }
             }
             .onOpenURL { productUrl in
-                linkedProduct = viewModel.handleUrl(productUrl)
+                viewModel.handleUrl(productUrl)
             }
-            .navigationDestination(item: $linkedProduct) { item in
+            .navigationDestination(item: $viewModel.sharedProduct) { item in
                 ProductDetailView(item: item)
             }
         }

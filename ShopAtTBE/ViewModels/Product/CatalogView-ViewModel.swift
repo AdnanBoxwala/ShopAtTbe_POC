@@ -7,6 +7,7 @@
 
 import CloudKit
 import Foundation
+import SwiftUI
 
 extension CatalogView {
     @Observable
@@ -15,6 +16,7 @@ extension CatalogView {
         private var container: CKContainer
         private(set) var items = [Product]()
         var selectedJewellery: JewelleryType = .all
+        var sharedProduct: Product?
         
         init() {
             let newContainer = CKContainer(identifier: "iCloud.com.github.AdnanBox.ShopAtTBE")
@@ -45,24 +47,39 @@ extension CatalogView {
             }
         }
         
-        func handleUrl(_ url: URL) -> Product? {
-            guard url.scheme == "Shopattbeapp" else {
-                return nil
-            }
+        func handleUrl(_ url: URL) {
+            guard url.scheme == "Shopattbeapp" else { return }
             guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
                 print("Invalid URL")
-                return nil
+                return
             }
             guard let action = components.host, action == "show-product" else {
                 print("Unknown URL")
-                return nil
+                return
             }
             guard let productId = components.queryItems?.first(where: { $0.name == "productId" })?.value else {
-                print("Product not provided")
-                return nil
+                print("Invalid ProductId")
+                return
             }
             
-            return self.items.first(where: { $0.productId == productId})
+            let query = CKQuery(recordType: RecordType.product.rawValue, predicate: NSPredicate(format: "productId == %@", productId))
+                
+            self.database.fetch(withQuery: query) { result in
+                switch result {
+                case .success(let result):
+                    switch result.matchResults.first!.1 {
+                    case .success(let record):
+                        if let product = Product.fromRecord(record) {
+                            self.sharedProduct = product
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
         
         func showSelectedJewellery(_ item: Product) -> Bool {

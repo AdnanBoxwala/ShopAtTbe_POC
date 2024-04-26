@@ -15,8 +15,8 @@ struct AdminView: View {
         TabView {
             ManageInventoryView()
                 .tabItem { Label("Inventory", systemImage: "archivebox.fill")}
-            ProfileView(user: user)
-                .tabItem { Label("Profile", systemImage: "person.circle.fill") }
+//            ProfileView(user: user)
+//                .tabItem { Label("Profile", systemImage: "person.circle.fill") }
         }
         .environment(viewModel)
     }

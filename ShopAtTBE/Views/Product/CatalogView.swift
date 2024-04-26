@@ -17,17 +17,6 @@ struct CatalogView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                HStack {
-                    Spacer()
-                    Picker(selection: $viewModel.selectedJewellery) {
-                        ForEach(JewelleryType.allCases, id: \.self) {
-                            Text($0.rawValue)
-                        }
-                    } label: {
-                        Label("filter", systemImage: "binoculars.fill")
-                    }
-                }
-                
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(viewModel.items.filter(viewModel.showSelectedJewellery)) { item in
@@ -45,9 +34,10 @@ struct CatalogView: View {
                         }
                     }
                 }
-                .padding(.horizontal)
+                .padding([.horizontal, .top])
             }
             .navigationTitle("Catalog")
+            .addSideBar(with: AnyView(SideBarMenuView()))
             .onAppear {
                 if viewModel.items.isEmpty {
                     viewModel.getAllItems()
@@ -59,6 +49,17 @@ struct CatalogView: View {
             .navigationDestination(item: $viewModel.sharedProduct) { item in
                 ProductDetailView(item: item)
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Picker(selection: $viewModel.selectedJewellery) {
+                        ForEach(JewelleryType.allCases, id: \.self) {
+                            Text($0.rawValue)
+                        }
+                    } label: {
+                        Image(systemName: "binoculars.fill")
+                    }
+                }
+            }
         }
     }
 }
@@ -66,4 +67,5 @@ struct CatalogView: View {
 #Preview {
     CatalogView()
         .environment(CustomerView.ViewModel())
+        .environment(AuthViewModel())
 }

@@ -22,9 +22,9 @@ struct CustomerView: View {
             BagView()
                 .tabItem { Label("Bag", systemImage: "handbag.fill") }
                 .tag("Bag")
-            ProfileView(user: user, isAnonymous: isAnonymous)
-                .tabItem { Label("Profile", systemImage: "person.circle.fill") }
-                .tag("Profile")
+//            ProfileView(user: user, isAnonymous: isAnonymous)
+//                .tabItem { Label("Profile", systemImage: "person.circle.fill") }
+//                .tag("Profile")
         }
         .environment(viewModel)
         .onOpenURL(perform: { url in

@@ -12,11 +12,13 @@ struct ContentView: View {
     let isAnonymous: Bool
     
     var body: some View {
-        switch butterflyEffectUser.role {
-        case .admin:
-            AdminView(user: butterflyEffectUser)
-        case .customer:
-            CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
+        Group {
+            switch butterflyEffectUser.role {
+            case .admin:
+                AdminView(user: butterflyEffectUser)
+            case .customer:
+                CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
+            }
         }
     }
 }

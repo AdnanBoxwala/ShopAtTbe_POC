@@ -50,6 +50,8 @@
 		8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768263E2B97BE67004C5EC0 /* JewelleryType.swift */; };
 		879C22C92BD02B380042A367 /* CloudKit-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */; };
 		879C22CB2BD02E110042A367 /* PhotoPickerItem-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */; };
+		87D402522BDAFE32003CE097 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D402512BDAFE32003CE097 /* SideBar.swift */; };
+		87D402542BDBC7D9003CE097 /* SideBarMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D402532BDBC7D9003CE097 /* SideBarMenuView.swift */; };
 		87F0436F2BCBDB8C00FCC003 /* ManageInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0436E2BCBDB8C00FCC003 /* ManageInventoryView.swift */; };
 		87F043712BCBF1FE00FCC003 /* View-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F043702BCBF1FE00FCC003 /* View-Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,8 @@
 		8768263E2B97BE67004C5EC0 /* JewelleryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JewelleryType.swift; sourceTree = "<group>"; };
 		879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudKit-Extensions.swift"; sourceTree = "<group>"; };
 		879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerItem-Extensions.swift"; sourceTree = "<group>"; };
+		87D402512BDAFE32003CE097 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
+		87D402532BDBC7D9003CE097 /* SideBarMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarMenuView.swift; sourceTree = "<group>"; };
 		87F0436E2BCBDB8C00FCC003 /* ManageInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageInventoryView.swift; sourceTree = "<group>"; };
 		87F043702BCBF1FE00FCC003 /* View-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +167,7 @@
 				8709F8912BBAD555000CCA81 /* ProfileView.swift */,
 				8709F8932BBAD561000CCA81 /* AdminProfileView.swift */,
 				8709F8952BBAD56B000CCA81 /* GuestProfileView.swift */,
+				87D402532BDBC7D9003CE097 /* SideBarMenuView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				873E40C12B86759F00158507 /* Models */,
 				873E40972B7D4C9800158507 /* Views */,
 				873E40C42B867CE600158507 /* ViewModels */,
+				87D402502BDAFE14003CE097 /* ViewModifiers */,
 				873E408D2B7D4AE100158507 /* Assets.xcassets */,
 				873E408F2B7D4AE100158507 /* Preview Content */,
 			);
@@ -335,6 +341,14 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		87D402502BDAFE14003CE097 /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				87D402512BDAFE32003CE097 /* SideBar.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -421,9 +435,11 @@
 				873E409B2B7D4ECA00158507 /* ProductView.swift in Sources */,
 				871148612B9CE5B5005C53F5 /* UserRole.swift in Sources */,
 				8709F8962BBAD56B000CCA81 /* GuestProfileView.swift in Sources */,
+				87D402542BDBC7D9003CE097 /* SideBarMenuView.swift in Sources */,
 				8709F88B2BAB7836000CCA81 /* CurrencyFormatter.swift in Sources */,
 				873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */,
 				8711485F2B9CE533005C53F5 /* User.swift in Sources */,
+				87D402522BDAFE32003CE097 /* SideBar.swift in Sources */,
 				8711486D2B9DB481005C53F5 /* CustomerProfileView.swift in Sources */,
 				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
 				876826262B8A46B5004C5EC0 /* UpdateInventoryView_old.swift in Sources */,

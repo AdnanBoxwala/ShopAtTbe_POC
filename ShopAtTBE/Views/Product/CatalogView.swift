@@ -37,7 +37,7 @@ struct CatalogView: View {
                 .padding([.horizontal, .top])
             }
             .navigationTitle("Catalog")
-            .addSideBar(with: AnyView(SideBarMenuView()))
+            .addSideBar(using: AnyView(SideBarMenuView()))
             .onAppear {
                 if viewModel.items.isEmpty {
                     viewModel.getAllItems()

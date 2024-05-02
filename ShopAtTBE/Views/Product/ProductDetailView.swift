@@ -29,6 +29,7 @@ struct ProductDetailView: View {
                                     Image(uiImage: uiimage)
                                         .resizable()
                                         .scaledToFit()
+                                        .zoomable()
                                         .frame(maxWidth: .infinity)
                                 } label: {
                                     Image(uiImage: uiimage)

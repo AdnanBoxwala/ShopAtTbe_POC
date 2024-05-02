@@ -58,7 +58,7 @@ struct SideBar: ViewModifier {
 }
 
 extension View {
-    func addSideBar(with content: AnyView) -> some View {
+    func addSideBar(using content: AnyView) -> some View {
         modifier(SideBar(sideBarContent: content))
     }
 }

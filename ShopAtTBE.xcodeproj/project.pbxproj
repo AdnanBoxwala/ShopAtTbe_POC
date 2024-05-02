@@ -48,6 +48,7 @@
 		8768263A2B97B9FE004C5EC0 /* CatalogView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826392B97B9FE004C5EC0 /* CatalogView-ViewModel.swift */; };
 		8768263D2B97BBC9004C5EC0 /* RecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768263C2B97BBC9004C5EC0 /* RecordType.swift */; };
 		8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768263E2B97BE67004C5EC0 /* JewelleryType.swift */; };
+		877A5B162BDE516C002D2D12 /* ImageZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A5B152BDE516C002D2D12 /* ImageZoom.swift */; };
 		879C22C92BD02B380042A367 /* CloudKit-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */; };
 		879C22CB2BD02E110042A367 /* PhotoPickerItem-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */; };
 		87D402522BDAFE32003CE097 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D402512BDAFE32003CE097 /* SideBar.swift */; };
@@ -98,6 +99,7 @@
 		876826392B97B9FE004C5EC0 /* CatalogView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CatalogView-ViewModel.swift"; sourceTree = "<group>"; };
 		8768263C2B97BBC9004C5EC0 /* RecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordType.swift; sourceTree = "<group>"; };
 		8768263E2B97BE67004C5EC0 /* JewelleryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JewelleryType.swift; sourceTree = "<group>"; };
+		877A5B152BDE516C002D2D12 /* ImageZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoom.swift; sourceTree = "<group>"; };
 		879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudKit-Extensions.swift"; sourceTree = "<group>"; };
 		879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerItem-Extensions.swift"; sourceTree = "<group>"; };
 		87D402512BDAFE32003CE097 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				87D402512BDAFE32003CE097 /* SideBar.swift */,
+				877A5B152BDE516C002D2D12 /* ImageZoom.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				871148662B9CF36A005C53F5 /* RegistrationView.swift in Sources */,
 				8709F8922BBAD555000CCA81 /* ProfileView.swift in Sources */,
 				8768263A2B97B9FE004C5EC0 /* CatalogView-ViewModel.swift in Sources */,
+				877A5B162BDE516C002D2D12 /* ImageZoom.swift in Sources */,
 				873E408A2B7D4AD400158507 /* ShopAtTBEApp.swift in Sources */,
 				871148832BA0B71B005C53F5 /* AdminView.swift in Sources */,
 				879C22C92BD02B380042A367 /* CloudKit-Extensions.swift in Sources */,

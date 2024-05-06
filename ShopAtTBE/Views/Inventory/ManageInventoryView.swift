@@ -49,7 +49,7 @@ struct ManageInventoryView: View {
                 
             }
         }
-        .addSideBar(using: AnyView(SideBarMenuView()))
+//        .addSideBar(using: AnyView(SideBarMenuView()))
         .environment(viewModel)
         .onAppear {
             if viewModel.items.isEmpty {

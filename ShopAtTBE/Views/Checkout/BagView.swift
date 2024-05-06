@@ -35,7 +35,7 @@ struct BagView: View {
                     .navigationTitle("Bag")
                 }
             }
-            .addSideBar(using: AnyView(SideBarMenuView()))
+//            .addSideBar(using: AnyView(SideBarMenuView()))
         }
     }
     

@@ -20,33 +20,21 @@ struct SideBar: ViewModifier {
                     .disabled(showSideBar)
                 
                 if showSideBar {
-                    ZStack(alignment: .topTrailing) {
-                        Rectangle()
-                            .foregroundStyle(Color.background)
-                            .frame(maxWidth: 300, maxHeight: .infinity)
-                            .ignoresSafeArea()
-                        
-                        Button {
-                            withAnimation {
-                                showSideBar = false
-                            }
-                        } label: {
-                            Image(systemName: "arrowshape.turn.up.backward.fill")
+                    Rectangle()
+                        .foregroundStyle(Color.background)
+                        .frame(maxWidth: 300, maxHeight: .infinity)
+                        .ignoresSafeArea()
+                        .overlay(alignment: .leading) {
+                            sideBarContent
                         }
-                        .padding()
-                    }
-                    .overlay(alignment: .leading) {
-                        sideBarContent
-                    }
-                    .transition(.move(edge: .leading))
-                    .toolbar(.hidden, for: .navigationBar, .tabBar)
+                        .transition(.move(edge: .leading))
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         withAnimation {
-                            showSideBar = true
+                            showSideBar.toggle()
                         }
                     } label: {
                         Image(systemName: "sidebar.left")

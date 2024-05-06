@@ -23,7 +23,7 @@ class Product: Equatable, Hashable, Identifiable {
     // MARK: Initialisation
     init() {
         self.assets = []
-        self.category = .ring
+        self.category = .bangles
         self.description = ""
         self.name = ""
         self.price = 0.0

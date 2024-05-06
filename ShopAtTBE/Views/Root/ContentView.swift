@@ -17,7 +17,7 @@ struct ContentView: View {
             case .admin:
                 AdminView(user: butterflyEffectUser)
             case .customer:
-                CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
+                CustomerView()
             }
         }
     }

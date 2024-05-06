@@ -10,34 +10,29 @@ import SwiftUI
 struct CatalogView: View {
     @State var viewModel = ViewModel()
     
-    let columns = [
-        GridItem(.adaptive(minimum: 150))
-    ]
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationStack {
-            VStack {
+            ScrollableTabBar(activeTab: JewelleryType.bangles) { type in
                 ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(viewModel.items.filter(viewModel.showSelectedJewellery)) { item in
+                    LazyVGrid(columns: columns, spacing: 30) {
+                        ForEach(viewModel.items.filter { $0.category == type }) { item in
                             NavigationLink {
                                 ProductDetailView(item: item)
                             } label: {
-                                VStack{
-                                    ProductView(
-                                        image: item.displayImage ?? UIImage(named: "placeholder_tbe")!,
-                                        name: item.name,
-                                        price: item.price)
-                                    Spacer()
-                                }
+                                ProductView(
+                                    image: item.displayImage ?? UIImage(named: "placeholder_tbe")!,
+                                    name: item.name,
+                                    price: item.price)
                             }
                         }
                     }
                 }
-                .padding([.horizontal, .top])
+                .padding(.top)
             }
             .navigationTitle("Catalog")
-            .addSideBar(using: AnyView(SideBarMenuView()))
+//            .addSideBar(using: AnyView(SideBarMenuView()))
             .onAppear {
                 if viewModel.items.isEmpty {
                     viewModel.getAllItems()
@@ -51,12 +46,10 @@ struct CatalogView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Picker(selection: $viewModel.selectedJewellery) {
-                        ForEach(JewelleryType.allCases, id: \.self) {
-                            Text($0.rawValue)
-                        }
+                    NavigationLink {
+                        BagView()
                     } label: {
-                        Image(systemName: "binoculars.fill")
+                        Label("Cart", systemImage: "cart")
                     }
                 }
             }

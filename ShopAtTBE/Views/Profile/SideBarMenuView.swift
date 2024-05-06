@@ -28,7 +28,6 @@ struct SideBarMenuView: View {
                         .padding(.leading)
                 }
                 .font(.title2)
-                .foregroundStyle(Color.black)
             }
             .padding(.bottom)
             
@@ -41,7 +40,6 @@ struct SideBarMenuView: View {
                         .padding(.leading)
                 }
                 .font(.title2)
-                .foregroundStyle(Color.black)
             }
             .padding(.bottom)
             
@@ -53,6 +51,7 @@ struct SideBarMenuView: View {
             }
             .buttonStyle(BorderedProminentButtonStyle())
         }
+        .foregroundStyle(Color.primary)
         .padding(.leading)
     }
 }

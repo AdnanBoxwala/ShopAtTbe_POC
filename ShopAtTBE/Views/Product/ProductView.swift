@@ -18,9 +18,8 @@ struct ProductView: View {
             Image(uiImage: image)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 150, height: 200)
+                .frame(height: 200)
                 .clipped()
-                .border(Color.black, width: 2)
                 
             VStack(alignment: .leading) {
                 Text(name)
@@ -28,11 +27,10 @@ struct ProductView: View {
                     .font(.headline)
                     .foregroundStyle(Color.primary)
                 Text(price.formatted(.currency(code: "AED")))
-                    .font(.caption)
+                    .font(.subheadline).bold()
                     .foregroundStyle(Color.primary)
             }
             .padding(.horizontal)
-
         }
     }
 }

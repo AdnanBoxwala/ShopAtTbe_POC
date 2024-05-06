@@ -22,10 +22,6 @@ struct ProductDetailView: View {
                         ForEach(item.images, id: \.self) { uiimage in
                             ZStack {
                                 NavigationLink {
-                                    // TODO:
-                                    // allow zoom
-                                    // https://www.hackingwithswift.com/quick-start/swiftui/how-to-handle-pinch-to-zoom-for-views
-                                    
                                     Image(uiImage: uiimage)
                                         .resizable()
                                         .scaledToFit()

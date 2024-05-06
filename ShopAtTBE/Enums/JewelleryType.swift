@@ -7,10 +7,13 @@
 
 import Foundation
 
-enum JewelleryType: String, CaseIterable {
-    case all = "All"
+enum JewelleryType: String, CaseIterable, Hashable, Identifiable {
     case bangles = "Bangles"
     case earrings = "Earrings"
-    case necklace = "Necklace"
-    case ring = "Ring"
+    case necklaces = "Necklaces"
+    case rings = "Rings"
+    
+    var id: Self {
+        return self
+    }
 }

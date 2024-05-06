@@ -15,7 +15,7 @@ extension CatalogView {
         private var database: CKDatabase
         private var container: CKContainer
         private(set) var items = [Product]()
-        var selectedJewellery: JewelleryType = .all
+        var selectedJewellery: JewelleryType = .bangles
         var sharedProduct: Product?
         
         init() {
@@ -83,7 +83,6 @@ extension CatalogView {
         }
         
         func showSelectedJewellery(_ item: Product) -> Bool {
-            if selectedJewellery == .all { return true }
             return item.category == selectedJewellery
         }
     }

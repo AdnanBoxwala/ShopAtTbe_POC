@@ -44,15 +44,6 @@ struct CatalogView: View {
             .navigationDestination(item: $viewModel.sharedProduct) { item in
                 ProductDetailView(item: item)
             }
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink {
-                        BagView()
-                    } label: {
-                        Label("Cart", systemImage: "cart")
-                    }
-                }
-            }
         }
     }
 }

@@ -12,7 +12,8 @@ struct UpdateInventoryView_old: View {
         NavigationStack {
             VStack {
                 NavigationLink {
-                    AddInventoryItemView()
+                    Text("hello world")
+//                    AddInventoryItemView()
                 } label: {
                     Label("Add item", systemImage: "plus.circle")
                         .font(.title)
@@ -43,5 +44,5 @@ struct UpdateInventoryView_old: View {
 
 #Preview {
     UpdateInventoryView_old()
-        .environment(UpdateInventoryView.ViewModel())
+        .environment(ManageInventoryView.ViewModel())
 }

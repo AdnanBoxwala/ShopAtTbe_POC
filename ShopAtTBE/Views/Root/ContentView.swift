@@ -15,9 +15,9 @@ struct ContentView: View {
         Group {
             switch butterflyEffectUser.role {
             case .admin:
-                AdminView(user: butterflyEffectUser)
+                AdminView(user: butterflyEffectUser, isAnonymous: isAnonymous)
             case .customer:
-                CustomerView()
+                CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
             }
         }
     }

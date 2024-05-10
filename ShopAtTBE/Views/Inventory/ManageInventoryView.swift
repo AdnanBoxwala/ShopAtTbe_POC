@@ -13,6 +13,10 @@ struct ManageInventoryView: View {
     
     @State private var searchText = ""
     @State private var showAddItemSheet = false
+    @State private var showUserProfileSheet = false
+    
+    let user: User
+    let isAnonymous: Bool
     
     var body: some View {
         NavigationStack {
@@ -38,6 +42,9 @@ struct ManageInventoryView: View {
                     AddInventoryItemView()
                 }
             }
+            .sheet(isPresented: $showUserProfileSheet) {
+                UserProfileSheetView(user: user, isAnonymous: isAnonymous)
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button {
@@ -47,6 +54,13 @@ struct ManageInventoryView: View {
                     }                    
                 }
                 
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showUserProfileSheet.toggle()
+                    } label: {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
+                }
             }
         }
 //        .addSideBar(using: AnyView(SideBarMenuView()))
@@ -73,6 +87,6 @@ struct ManageInventoryView: View {
 }
 
 #Preview {
-    ManageInventoryView()
+    ManageInventoryView(user: User.MOCK_ADMIN, isAnonymous: false)
         .environment(ManageInventoryView.ViewModel())
 }

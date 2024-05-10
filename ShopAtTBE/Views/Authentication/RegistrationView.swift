@@ -95,6 +95,9 @@ struct RegistrationView: View {
                     .listRowBackground(Color.blue)
                 }
                 
+                // TODO: add button if account already exists
+                
+                
                 
 //                Spacer()
 //                HStack {

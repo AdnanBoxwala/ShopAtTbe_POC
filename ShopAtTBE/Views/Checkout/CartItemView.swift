@@ -1,5 +1,5 @@
 //
-//  BagItemView.swift
+//  CartItemView.swift
 //  ShopAtTBE
 //
 //  Created by Adnan Boxwala on 19.03.24.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct BagItemView: View {
-    @Bindable var item: BagItem
+struct CartItemView: View {
+    @Bindable var item: CartItem
     @State private var showQuantitySheet = false
     
     var body: some View {
@@ -69,5 +69,5 @@ struct BagItemView: View {
 }
 
 #Preview {
-    BagItemView(item: BagItem.MOCK_ITEM)
+    CartItemView(item: CartItem.MOCK_ITEM)
 }

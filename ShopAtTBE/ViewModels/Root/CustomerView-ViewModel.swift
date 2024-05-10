@@ -12,7 +12,7 @@ import SwiftUI
 extension CustomerView {
     @Observable
     class ViewModel {
-        var bag: [BagItem] = []
+        var bag: [CartItem] = []
         
         var totalCost: Double {
             var finalCost = 0.0
@@ -22,11 +22,20 @@ extension CustomerView {
             return finalCost
         }
         
-        func addToBag(item: Product, quantity: Int) {
+        // TODO: update this value somehow
+        var totalItemCount: Int {
+            var totalCount = 0
+            for item in bag {
+                totalCount += item.quantity
+            }
+            return totalCount
+        }
+        
+        func addToCart(item: Product, quantity: Int) {
             if let index = bag.firstIndex(where: {$0.productId == item.productId}) {
                 bag[index].quantity += 1
             } else {
-                let bagItem = BagItem(displayImage: item.displayImage ?? UIImage(named: "placeholder_tbe")!,
+                let bagItem = CartItem(displayImage: item.displayImage ?? UIImage(named: "placeholder_tbe")!,
                                             name: item.name,
                                             price: item.price,
                                             productId: item.productId,
@@ -35,7 +44,7 @@ extension CustomerView {
             }
         }
         
-        func removeBagItem(at offsets: IndexSet) {
+        func removeCartItem(at offsets: IndexSet) {
             let productId = bag[offsets.first!].productId
             guard let idx = bag.firstIndex(where: { $0.productId == productId }) else {
                 return

@@ -1,5 +1,5 @@
 //
-//  BagItem.swift
+//  CartItem.swift
 //  ShopAtTBE
 //
 //  Created by Adnan Boxwala on 29.03.24.
@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 @Observable
-class BagItem: Identifiable {
+class CartItem: Identifiable {
     let displayImage: UIImage
     let name: String
     let price: Double
@@ -28,9 +28,9 @@ class BagItem: Identifiable {
 
 
 
-extension BagItem {
+extension CartItem {
 #if DEBUG
-    static let MOCK_ITEM: BagItem = BagItem(displayImage: UIImage(named: "Example_1")!, name: "Chandbali", price: 450, productId: "ABCD-1234", quantity: 5)
+    static let MOCK_ITEM: CartItem = CartItem(displayImage: UIImage(named: "Example_1")!, name: "Chandbali", price: 450, productId: "ABCD-1234", quantity: 5)
 #endif
 }
 

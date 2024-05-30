@@ -47,7 +47,7 @@ struct CatalogView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     NavigationLink {
-                        BagView()
+                        CartView()
                     } label: {
                         Label("Cart", systemImage: "cart")
                     }

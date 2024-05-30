@@ -41,7 +41,6 @@
 		873E409D2B7D504500158507 /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E409C2B7D504500158507 /* ProductDetailView.swift */; };
 		873E409F2B7D57F300158507 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E409E2B7D57F300158507 /* CartView.swift */; };
 		873E40C32B8675B200158507 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873E40C22B8675B200158507 /* Product.swift */; };
-		876826262B8A46B5004C5EC0 /* UpdateInventoryView_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826252B8A46B5004C5EC0 /* UpdateInventoryView_old.swift */; };
 		876826282B8A47EC004C5EC0 /* AddInventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */; };
 		8768262A2B8A4A08004C5EC0 /* UpdateInventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */; };
 		8768262F2B8AAEC0004C5EC0 /* ManageInventoryView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8768262E2B8AAEC0004C5EC0 /* ManageInventoryView-ViewModel.swift */; };
@@ -51,7 +50,6 @@
 		877130C22BEE370200E719A7 /* HideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877130C12BEE370200E719A7 /* HideView.swift */; };
 		877A5B162BDE516C002D2D12 /* ImageZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A5B152BDE516C002D2D12 /* ImageZoom.swift */; };
 		877A5B1E2BE65C07002D2D12 /* ScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A5B1D2BE65C07002D2D12 /* ScrollableTabBar.swift */; };
-		877A5B242BE81655002D2D12 /* testPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A5B232BE81655002D2D12 /* testPadding.swift */; };
 		877A5B262BE97A73002D2D12 /* UserProfileSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877A5B252BE97A73002D2D12 /* UserProfileSheetView.swift */; };
 		879C22C92BD02B380042A367 /* CloudKit-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */; };
 		879C22CB2BD02E110042A367 /* PhotoPickerItem-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */; };
@@ -96,7 +94,6 @@
 		873E409E2B7D57F300158507 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		873E40A52B83D04D00158507 /* ShopAtTBE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShopAtTBE.entitlements; sourceTree = "<group>"; };
 		873E40C22B8675B200158507 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		876826252B8A46B5004C5EC0 /* UpdateInventoryView_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInventoryView_old.swift; sourceTree = "<group>"; };
 		876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInventoryItemView.swift; sourceTree = "<group>"; };
 		876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInventoryItemView.swift; sourceTree = "<group>"; };
 		8768262E2B8AAEC0004C5EC0 /* ManageInventoryView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManageInventoryView-ViewModel.swift"; sourceTree = "<group>"; };
@@ -106,7 +103,6 @@
 		877130C12BEE370200E719A7 /* HideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideView.swift; sourceTree = "<group>"; };
 		877A5B152BDE516C002D2D12 /* ImageZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageZoom.swift; sourceTree = "<group>"; };
 		877A5B1D2BE65C07002D2D12 /* ScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTabBar.swift; sourceTree = "<group>"; };
-		877A5B232BE81655002D2D12 /* testPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testPadding.swift; sourceTree = "<group>"; };
 		877A5B252BE97A73002D2D12 /* UserProfileSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileSheetView.swift; sourceTree = "<group>"; };
 		879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudKit-Extensions.swift"; sourceTree = "<group>"; };
 		879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerItem-Extensions.swift"; sourceTree = "<group>"; };
@@ -153,14 +149,6 @@
 				8709F8982BBAFC1B000CCA81 /* StepperView.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		8709F89A2BC2AF0E000CCA81 /* TestViews */ = {
-			isa = PBXGroup;
-			children = (
-				877A5B232BE81655002D2D12 /* testPadding.swift */,
-			);
-			path = TestViews;
 			sourceTree = "<group>";
 		};
 		871148622B9CF350005C53F5 /* Authentication */ = {
@@ -240,7 +228,6 @@
 		873E40972B7D4C9800158507 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8709F89A2BC2AF0E000CCA81 /* TestViews */,
 				871148622B9CF350005C53F5 /* Authentication */,
 				876826372B8D322D004C5EC0 /* Checkout */,
 				8709F8972BBAFB6B000CCA81 /* Components */,
@@ -276,7 +263,6 @@
 		876826242B8A4699004C5EC0 /* Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				876826252B8A46B5004C5EC0 /* UpdateInventoryView_old.swift */,
 				876826272B8A47EC004C5EC0 /* AddInventoryItemView.swift */,
 				876826292B8A4A08004C5EC0 /* UpdateInventoryItemView.swift */,
 				8711485C2B9C72D0005C53F5 /* UploadSuccessView.swift */,
@@ -458,11 +444,9 @@
 				8711486D2B9DB481005C53F5 /* CustomerProfileView.swift in Sources */,
 				8711485D2B9C72D0005C53F5 /* UploadSuccessView.swift in Sources */,
 				877A5B1E2BE65C07002D2D12 /* ScrollableTabBar.swift in Sources */,
-				876826262B8A46B5004C5EC0 /* UpdateInventoryView_old.swift in Sources */,
 				8709F8882BAA3023000CCA81 /* CartItemView.swift in Sources */,
 				87F0436F2BCBDB8C00FCC003 /* ManageInventoryView.swift in Sources */,
 				873E409F2B7D57F300158507 /* CartView.swift in Sources */,
-				877A5B242BE81655002D2D12 /* testPadding.swift in Sources */,
 				8709F8902BB6FF41000CCA81 /* CartItem.swift in Sources */,
 				8709F88E2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift in Sources */,
 				873E40992B7D4CAD00158507 /* CatalogView.swift in Sources */,

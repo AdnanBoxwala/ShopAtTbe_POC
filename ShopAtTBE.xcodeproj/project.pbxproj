@@ -23,7 +23,6 @@
 		871148772B9FAB7D005C53F5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 871148762B9FAB7D005C53F5 /* FirebaseAuth */; };
 		871148792B9FAB7D005C53F5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 871148782B9FAB7D005C53F5 /* FirebaseFirestore */; };
 		8711487B2B9FAB7D005C53F5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8711487A2B9FAB7D005C53F5 /* FirebaseFirestoreSwift */; };
-		871148812BA0B68F005C53F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148802BA0B68F005C53F5 /* ContentView.swift */; };
 		871148832BA0B71B005C53F5 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148822BA0B71B005C53F5 /* AdminView.swift */; };
 		871148852BA0B72C005C53F5 /* CustomerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871148842BA0B72C005C53F5 /* CustomerView.swift */; };
 		873B206E2BCFF25E00E197BC /* ProductFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873B206D2BCFF25E00E197BC /* ProductFormView.swift */; };
@@ -72,7 +71,6 @@
 		871148632B9CF362005C53F5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		871148652B9CF36A005C53F5 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		871148712B9FA7CD005C53F5 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
-		871148802BA0B68F005C53F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		871148822BA0B71B005C53F5 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
 		871148842BA0B72C005C53F5 /* CustomerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerView.swift; sourceTree = "<group>"; };
 		873B206D2BCFF25E00E197BC /* ProductFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFormView.swift; sourceTree = "<group>"; };
@@ -300,7 +298,6 @@
 			isa = PBXGroup;
 			children = (
 				873E408B2B7D4AD400158507 /* RootView.swift */,
-				871148802BA0B68F005C53F5 /* ContentView.swift */,
 				871148822BA0B71B005C53F5 /* AdminView.swift */,
 				871148842BA0B72C005C53F5 /* CustomerView.swift */,
 			);
@@ -443,7 +440,6 @@
 				8709F88E2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift in Sources */,
 				873E40992B7D4CAD00158507 /* CatalogView.swift in Sources */,
 				8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */,
-				871148812BA0B68F005C53F5 /* ContentView.swift in Sources */,
 				8709F87A2BA5B458000CCA81 /* Color-Theme.swift in Sources */,
 				873B20702BCFFBB900E197BC /* AssetPreview.swift in Sources */,
 				873E408C2B7D4AD400158507 /* RootView.swift in Sources */,

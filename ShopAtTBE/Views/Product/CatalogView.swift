@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CatalogView: View {
-    @State var viewModel = ViewModel()
+    @Environment(CatalogView.ViewModel.self) var viewModel
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
@@ -32,7 +32,6 @@ struct CatalogView: View {
                 .padding(.top)
             }
             .navigationTitle("Catalog")
-//            .addSideBar(using: AnyView(SideBarMenuView()))
             .onAppear {
                 if viewModel.items.isEmpty {
                     viewModel.getAllItems()
@@ -41,15 +40,19 @@ struct CatalogView: View {
             .onOpenURL { productUrl in
                 viewModel.handleUrl(productUrl)
             }
-            .navigationDestination(item: $viewModel.sharedProduct) { item in
+            .navigationDestination(item: getProduct()) { item in
                 ProductDetailView(item: item)
             }
         }
+    }
+    
+    func getProduct() -> Binding<Product?> {
+        return Binding(get: { viewModel.sharedProduct}, set: { viewModel.sharedProduct = $0 })
     }
 }
 
 #Preview {
     CatalogView()
+        .environment(CatalogView.ViewModel())
         .environment(CustomerView.ViewModel())
-        .environment(AuthViewModel())
 }

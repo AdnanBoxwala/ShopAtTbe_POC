@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CustomerView: View {
-    @Environment(AuthViewModel.self) var authViewModel
     @Environment(CustomerView.ViewModel.self) var customerViewModel
     @State private var showUserProfileSheet = false
 
@@ -42,7 +41,6 @@ struct CustomerView: View {
                     }
                 }
         }
-        .environment(customerViewModel)
     }
 }
 

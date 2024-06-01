@@ -45,5 +45,4 @@ struct CartView: View {
 #Preview {
     CartView()
         .environment(CustomerView.ViewModel())
-        .environment(AuthViewModel())
 }

@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct AdminView: View {
-    @Environment(AuthViewModel.self) var authViewModel
-    @Environment(ManageInventoryView.ViewModel.self) var manageInventoryViewModel
-    
     let user: User
     
     var body: some View {
@@ -26,4 +23,5 @@ struct AdminView: View {
 #Preview {
     AdminView(user: User.MOCK_ADMIN)
         .environment(AuthViewModel())
+        .environment(ManageInventoryView.ViewModel())
 }

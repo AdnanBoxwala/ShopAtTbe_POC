@@ -31,6 +31,16 @@ struct User: Identifiable, Codable {
         self.role = role
         self.orderHistory = orderHistory
     }
+    
+    init() {
+        self.id = ""
+        self.firstName = ""
+        self.lastName = ""
+        self.dateOfBirth = .now
+        self.emailId = ""
+        self.role = .admin
+        self.orderHistory = []
+    }
 }
 
 

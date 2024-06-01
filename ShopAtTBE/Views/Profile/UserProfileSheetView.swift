@@ -11,69 +11,19 @@ struct UserProfileSheetView: View {
     @Environment(AuthViewModel.self) var authViewModel
     @Environment(\.dismiss) var dismiss
     
-    let user: User
-    let isAnonymous: Bool
-    
     var body: some View {
         NavigationStack {
             Group {
-                List {
-                    Section {
-                        Button {
-                            
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Text("\(user.firstName.capitalized) \(user.lastName.capitalized)")
-                                    .font(.title2)
-                                    .foregroundStyle(Color.primary)
-                                
-                                Text("\(user.emailId)")
-                                    .font(.caption)
-                            }
-                        }
+                if authViewModel.userFetchedFromDatabase {
+                    let user = authViewModel.butterflyEffectUser!
+                    switch user.role {
+                    case .admin:
+                        AdminSignedInView(user: user)
+                    case .customer:
+                        UserSignedInView(user: user)
                     }
-                    .hide(if: isAnonymous)
-                    
-                    Section {
-                        NavigationLink("Details") {
-                            Text("show user details")
-                        }
-                        NavigationLink("Order History") {
-                            Text("show users transactions")
-                        }
-                    }
-                    .hide(if: isAnonymous || user.role == .admin)
-                    
-                    Section {
-                        HStack {
-                            Spacer()
-                            Button(role: .destructive) {
-                                authViewModel.signOut()
-                            } label: {
-                                HStack {
-                                    Text("Log Out")
-                                        .foregroundStyle(Color.white)
-                                }
-                            }
-                            .buttonStyle(BorderedProminentButtonStyle())
-                            Spacer()
-                        }
-                        .listRowBackground(Color.clear)
-                    }
-                    .hide(if: isAnonymous)
-                    
-                    Section {
-                        NavigationLink(destination: {
-                            RegistrationView()
-                        }, label: {
-                            Text("Create Account")
-                                .fontWeight(.semibold)
-                        })
-                    }
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color.white)
-                    .listRowBackground(Color.blue)
-                    .hide(if: !isAnonymous)
+                } else {
+                    UserNotSignedInView()
                 }
             }
             .navigationTitle("Account")
@@ -90,6 +40,6 @@ struct UserProfileSheetView: View {
 }
 
 #Preview {
-    UserProfileSheetView(user: User.MOCK_USER, isAnonymous: true)
+    UserProfileSheetView()
         .environment(AuthViewModel())
 }

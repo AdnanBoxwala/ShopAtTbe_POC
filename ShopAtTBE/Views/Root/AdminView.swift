@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct AdminView: View {
-    @State var viewModel = ManageInventoryView.ViewModel()
+    @Environment(AuthViewModel.self) var authViewModel
+    @Environment(ManageInventoryView.ViewModel.self) var manageInventoryViewModel
     
     let user: User
-    let isAnonymous: Bool
     
     var body: some View {
         TabView {
-            ManageInventoryView(user: user, isAnonymous: isAnonymous)
+            ManageInventoryView(user: user)
                 .tabItem { Label("Inventory", systemImage: "archivebox.fill")}
+            Text("test")
+                .tabItem { Label("test", systemImage: "house") }
         }
-        .environment(viewModel)
     }
 }
 
 #Preview {
-    AdminView(user: User.MOCK_ADMIN, isAnonymous: false)
+    AdminView(user: User.MOCK_ADMIN)
         .environment(AuthViewModel())
 }

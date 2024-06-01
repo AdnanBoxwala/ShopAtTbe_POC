@@ -9,17 +9,14 @@ import SwiftUI
 
 struct CustomerView: View {
     @Environment(AuthViewModel.self) var authViewModel
-    @State private var customerViewModel = CustomerView.ViewModel()
+    @Environment(CustomerView.ViewModel.self) var customerViewModel
     @State private var showUserProfileSheet = false
-    
-    let user: User
-    let isAnonymous: Bool
 
     var body: some View {
         NavigationStack {
             CatalogView()
                 .sheet(isPresented: $showUserProfileSheet) {
-                    UserProfileSheetView(user: user, isAnonymous: isAnonymous)
+                    UserProfileSheetView()
                 }
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -50,7 +47,7 @@ struct CustomerView: View {
 }
 
 #Preview {
-    CustomerView(user: User.MOCK_USER, isAnonymous: false)
+    CustomerView()
         .environment(AuthViewModel())
         .environment(CustomerView.ViewModel())
 }

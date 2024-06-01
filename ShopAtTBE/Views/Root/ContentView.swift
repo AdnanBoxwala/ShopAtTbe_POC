@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(AuthViewModel.self) var authViewModel
+    
     let butterflyEffectUser: User
     let isAnonymous: Bool
     
@@ -15,9 +17,10 @@ struct ContentView: View {
         Group {
             switch butterflyEffectUser.role {
             case .admin:
-                AdminView(user: butterflyEffectUser, isAnonymous: isAnonymous)
+                AdminView(user: butterflyEffectUser)
             case .customer:
-                CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
+//                CustomerView(user: butterflyEffectUser, isAnonymous: isAnonymous)
+                CustomerView()
             }
         }
     }

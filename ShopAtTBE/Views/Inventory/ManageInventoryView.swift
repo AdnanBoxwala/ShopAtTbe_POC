@@ -16,14 +16,13 @@ struct ManageInventoryView: View {
     @State private var showUserProfileSheet = false
     
     let user: User
-    let isAnonymous: Bool
     
     var body: some View {
         NavigationStack {
             List {
                 ForEach(JewelleryType.allCases, id: \.self) { category in
                     Section {
-                        ForEach(viewModel.items.filter({ $0.category == category }), id: \.productId) { item in
+                        ForEach(searchResults.filter({ $0.category == category }), id: \.productId) { item in
                             NavigationLink {
                                 UpdateInventoryItemView(record: item)
                             } label: {
@@ -43,7 +42,7 @@ struct ManageInventoryView: View {
                 }
             }
             .sheet(isPresented: $showUserProfileSheet) {
-                UserProfileSheetView(user: user, isAnonymous: isAnonymous)
+                UserProfileSheetView()
             }
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
@@ -87,6 +86,6 @@ struct ManageInventoryView: View {
 }
 
 #Preview {
-    ManageInventoryView(user: User.MOCK_ADMIN, isAnonymous: false)
+    ManageInventoryView(user: User.MOCK_ADMIN)
         .environment(ManageInventoryView.ViewModel())
 }

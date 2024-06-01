@@ -14,6 +14,16 @@ import Foundation
     var loggedInUser: FirebaseAuth.User?
     var butterflyEffectUser: User?
     
+    var userRole: UserRole {
+        if let butterflyEffectUser {
+            return butterflyEffectUser.role
+        } else {
+            return .customer
+        }
+    }
+    
+    var userFetchedFromDatabase = false
+    
     init() {
         self.loggedInUser = Auth.auth().currentUser
         Task {
@@ -63,6 +73,7 @@ import Foundation
             try Auth.auth().signOut()
             self.loggedInUser = nil
             self.butterflyEffectUser = nil
+            self.userFetchedFromDatabase = false
         } catch {
             print("DEBUG: Failed to sign out with error: \(error.localizedDescription)")
         }
@@ -81,7 +92,12 @@ import Foundation
             return
         }
         
-        self.butterflyEffectUser = try? snapshot.data(as: User.self)
+        do {
+            self.butterflyEffectUser = try snapshot.data(as: User.self)
+            self.userFetchedFromDatabase = true
+        } catch {
+            self.userFetchedFromDatabase = false
+        }
         
         print("DEBUG: Current user is \(String(describing: self.butterflyEffectUser?.firstName)) \(String(describing: self.butterflyEffectUser?.lastName))")
     }

@@ -15,14 +15,5 @@
 			</array>
 		</dict>
 	</array>
-	<key>UILaunchScreen</key>
-	<dict>
-		<key>UIColorName</key>
-		<string>Background</string>
-		<key>UIImageName</key>
-		<string>placeholder_tbe</string>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
-	</dict>
 </dict>
 </plist>

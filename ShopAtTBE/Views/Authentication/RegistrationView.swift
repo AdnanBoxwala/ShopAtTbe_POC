@@ -23,6 +23,10 @@ struct RegistrationView: View {
     
     @State private var showPassword: Bool = false
     
+    @State private var authFailed = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = "Please try again."
+    
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
         let startComponents = DateComponents(year: Calendar.current.component(.year, from: Date.now) - 100, month: 1, day: 1)
@@ -78,7 +82,12 @@ struct RegistrationView: View {
                     Section {
                         Button {
                             Task {
-                                try await authViewModel.createUser(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, withEmail: emailId, password: password)
+                                do {
+                                    try await authViewModel.createUser(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, withEmail: emailId, password: password)
+                                } catch {
+                                    alertTitle = "Failed to create user."
+                                    authFailed = true
+                                }
                             }
                         } label: {
                             HStack {
@@ -94,40 +103,15 @@ struct RegistrationView: View {
                     .frame(maxWidth: .infinity)
                     .listRowBackground(Color.blue)
                 }
-                
-                // TODO: add button if account already exists
-                
-                
-                
-//                Spacer()
-//                HStack {
-//                    
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        VStack(spacing: 2) {
-//                            Text("Already a user?")
-//                            Text("Sign in")
-//                                .fontWeight(.bold)
-//                        }
-//                    }
-//                    
-//                    Spacer()
-//                    Button {
-//                        // add functionality to switch to guest view
-//                    } label: {
-//                        VStack(spacing: 2) {
-//                            Text("Guest\nAccess")
-//                                .fontWeight(.bold)
-//                        }
-//                    }
-//                }
-//                .padding()
-                
-//                Spacer()
+            }
+            .alert(alertTitle, isPresented: $authFailed) {
+                Button("Ok") {
+                    authFailed = false
+                }
+            } message: {
+                Text(alertMessage)
             }
             .navigationTitle("Registration")
-//            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem {
                     Button("Cancel", role: .cancel) {

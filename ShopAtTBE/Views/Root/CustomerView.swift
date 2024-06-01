@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomerView: View {
-    @Environment(CustomerView.ViewModel.self) var customerViewModel
+    @Environment(CustomerView.ViewModel.self) var viewModel
     @State private var showUserProfileSheet = false
 
     var body: some View {
@@ -26,7 +26,7 @@ struct CustomerView: View {
                                 .padding(.top, 8)
                                 .padding(.trailing, 5)
                                 .overlay(alignment: .topTrailing) {
-                                    Text("\(customerViewModel.totalItemCount)")
+                                    Text("\(viewModel.totalItemCount)")
                                         .font(.caption)
                                 }
                         }

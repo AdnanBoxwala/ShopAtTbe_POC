@@ -53,7 +53,6 @@
 		879C22CB2BD02E110042A367 /* PhotoPickerItem-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */; };
 		87D402522BDAFE32003CE097 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D402512BDAFE32003CE097 /* SideBar.swift */; };
 		87F0436F2BCBDB8C00FCC003 /* ManageInventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F0436E2BCBDB8C00FCC003 /* ManageInventoryView.swift */; };
-		87F043712BCBF1FE00FCC003 /* View-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F043702BCBF1FE00FCC003 /* View-Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +102,6 @@
 		879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerItem-Extensions.swift"; sourceTree = "<group>"; };
 		87D402512BDAFE32003CE097 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		87F0436E2BCBDB8C00FCC003 /* ManageInventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageInventoryView.swift; sourceTree = "<group>"; };
-		87F043702BCBF1FE00FCC003 /* View-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View-Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				8709F8792BA5B458000CCA81 /* Color-Theme.swift */,
-				87F043702BCBF1FE00FCC003 /* View-Extensions.swift */,
 				879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */,
 				879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */,
 			);
@@ -458,7 +455,6 @@
 				876826282B8A47EC004C5EC0 /* AddInventoryItemView.swift in Sources */,
 				877A5B262BE97A73002D2D12 /* UserProfileSheetView.swift in Sources */,
 				8768263D2B97BBC9004C5EC0 /* RecordType.swift in Sources */,
-				87F043712BCBF1FE00FCC003 /* View-Extensions.swift in Sources */,
 				878E38B82C08984400D3965F /* UserSignedInView.swift in Sources */,
 				879C22CB2BD02E110042A367 /* PhotoPickerItem-Extensions.swift in Sources */,
 			);

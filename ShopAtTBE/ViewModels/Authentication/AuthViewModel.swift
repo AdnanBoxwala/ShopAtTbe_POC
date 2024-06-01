@@ -38,6 +38,7 @@ import Foundation
             await fetchUser()
         } catch {
             print("DEBUG: Failed to log in with error \(error.localizedDescription)")
+            throw AuthError.failedSignIn
         }
     }
     
@@ -65,10 +66,11 @@ import Foundation
             await fetchUser()
         } catch {
             print("DEBUG: Failed to create user with error: \(error.localizedDescription)")
+            throw AuthError.failedCreateUser
         }
     }
     
-    func signOut() {
+    func signOut() throws {
         do {
             try Auth.auth().signOut()
             self.loggedInUser = nil
@@ -76,6 +78,7 @@ import Foundation
             self.userFetchedFromDatabase = false
         } catch {
             print("DEBUG: Failed to sign out with error: \(error.localizedDescription)")
+            throw AuthError.failedSignOut
         }
     }
     
@@ -100,5 +103,14 @@ import Foundation
         }
         
         print("DEBUG: Current user is \(String(describing: self.butterflyEffectUser?.firstName)) \(String(describing: self.butterflyEffectUser?.lastName))")
+    }
+}
+
+extension AuthViewModel {
+    enum AuthError: Error {
+        case failedSignIn
+        case failedSignOut
+        case failedCreateUser
+        case failedGuestSignIn
     }
 }

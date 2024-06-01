@@ -16,6 +16,10 @@ struct LoginView: View {
     @State private var showPassword: Bool = false
     @State private var showingRegistration: Bool = false
     
+    @State private var authFailed = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = "The email or password are incorrect."
+    
     // TODO: use switch case here
     var body: some View {
         NavigationStack {
@@ -52,7 +56,12 @@ struct LoginView: View {
                 Button {
                     Task {
                         // TODO: handle errors
-                        try await authViewModel.signIn(withEmail: emailId, password: password)
+                        do {
+                            try await authViewModel.signIn(withEmail: emailId, password: password)
+                        } catch {
+                            alertTitle = "Sign in failed."
+                            authFailed = true
+                        }
                     }
                 } label: {
                     HStack {
@@ -93,6 +102,13 @@ struct LoginView: View {
             .padding(.horizontal)
             .sheet(isPresented: $showingRegistration) {
                 RegistrationView()
+            }
+            .alert(alertTitle, isPresented: $authFailed) {
+                Button("Try again") {
+                    authFailed = false
+                }
+            } message: {
+                Text(alertMessage)
             }
         }
     }

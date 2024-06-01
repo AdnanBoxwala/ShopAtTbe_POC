@@ -11,4 +11,3 @@ enum UserRole: String, Codable {
     case admin
     case customer
 }
-        

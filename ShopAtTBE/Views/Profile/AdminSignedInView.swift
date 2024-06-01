@@ -11,6 +11,9 @@ struct AdminSignedInView: View {
     @Environment(AuthViewModel.self) var authViewModel
     let user: User
     
+    @State private var authFailed = false
+    @State private var alertTitle = ""
+    
     var body: some View {
         NavigationStack {
             List {
@@ -43,7 +46,12 @@ struct AdminSignedInView: View {
                     HStack {
                         Spacer()
                         Button(role: .destructive) {
-                            authViewModel.signOut()
+                            do {
+                                try authViewModel.signOut()
+                            } catch {
+                                alertTitle = "Sign out failed."
+                                authFailed = true
+                            }
                         } label: {
                             HStack {
                                 Text("Log Out")
@@ -54,6 +62,11 @@ struct AdminSignedInView: View {
                         Spacer()
                     }
                     .listRowBackground(Color.clear)
+                }
+            }
+            .alert(alertTitle, isPresented: $authFailed) {
+                Button("Cancel") {
+                    authFailed = false
                 }
             }
         }

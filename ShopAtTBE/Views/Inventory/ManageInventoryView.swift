@@ -32,7 +32,7 @@ struct ManageInventoryView: View {
                     } header: {
                         Text(category.rawValue) 
                     }
-                    .isHidden(viewModel.isCategoryEmpty(category))
+                    .hide(if: viewModel.isCategoryEmpty(category))
                 }
             }
             .navigationTitle("Inventory")

@@ -53,9 +53,8 @@ struct LoginView: View {
                 .background(.opacity(0.1))
                 .clipShape(RoundedRectangle(cornerRadius: 15))
                 
-                Button {
+                TbeButton(title: "SIGN IN", systemName: "arrow.right") {
                     Task {
-                        // TODO: handle errors
                         do {
                             try await authViewModel.signIn(withEmail: emailId, password: password)
                         } catch {
@@ -63,20 +62,8 @@ struct LoginView: View {
                             authFailed = true
                         }
                     }
-                } label: {
-                    HStack {
-                        Text("SIGN IN")
-                            .foregroundStyle(Color.white)
-                            .fontWeight(.semibold)
-                        Image(systemName: "arrow.right")
-                            .foregroundStyle(Color.white)
-                            .fontWeight(.semibold)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
+                .disabled(emailId.isEmpty || password.isEmpty)
                 
                 Button {
                     showingRegistration = true

@@ -48,7 +48,7 @@ extension CatalogView {
         }
         
         func handleUrl(_ url: URL) {
-            guard url.scheme == "Shopattbeapp" else { return }
+            guard url.scheme == "shopattbeapp" else { return }
             guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
                 print("Invalid URL")
                 return

@@ -12,27 +12,16 @@ struct UserNotSignedInView: View {
     
     var body: some View {
         NavigationStack {
-            Button {
-                showSignInSheet.toggle()
-            } label: {
-                VStack {
-                    HStack {
-                        Text("Log in to account")
-                            .foregroundStyle(Color.white)
-                            .fontWeight(.semibold)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(.blue)
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .padding(.horizontal)
-                    
-                    Spacer()
+            VStack {
+                TbeButton(title: "Log in to account") {
+                    showSignInSheet.toggle()
                 }
+                .padding()
+                Spacer()
             }
-            .sheet(isPresented: $showSignInSheet, content: {
+            .sheet(isPresented: $showSignInSheet) {
                 LoginView()
-            })
+            }
         }
     }
 }

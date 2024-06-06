@@ -49,6 +49,7 @@
 		878E38B62C08956100D3965F /* UserNotSignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878E38B52C08956100D3965F /* UserNotSignedInView.swift */; };
 		878E38B82C08984400D3965F /* UserSignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878E38B72C08984400D3965F /* UserSignedInView.swift */; };
 		878E38BA2C08993300D3965F /* AdminSignedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878E38B92C08993300D3965F /* AdminSignedInView.swift */; };
+		879BA02F2C0CDAA600F1A3F0 /* TbeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879BA02E2C0CDAA600F1A3F0 /* TbeButton.swift */; };
 		879C22C92BD02B380042A367 /* CloudKit-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */; };
 		879C22CB2BD02E110042A367 /* PhotoPickerItem-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */; };
 		87D402522BDAFE32003CE097 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D402512BDAFE32003CE097 /* SideBar.swift */; };
@@ -98,6 +99,7 @@
 		878E38B52C08956100D3965F /* UserNotSignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotSignedInView.swift; sourceTree = "<group>"; };
 		878E38B72C08984400D3965F /* UserSignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignedInView.swift; sourceTree = "<group>"; };
 		878E38B92C08993300D3965F /* AdminSignedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSignedInView.swift; sourceTree = "<group>"; };
+		879BA02E2C0CDAA600F1A3F0 /* TbeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TbeButton.swift; sourceTree = "<group>"; };
 		879C22C82BD02B380042A367 /* CloudKit-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CloudKit-Extensions.swift"; sourceTree = "<group>"; };
 		879C22CA2BD02E110042A367 /* PhotoPickerItem-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoPickerItem-Extensions.swift"; sourceTree = "<group>"; };
 		87D402512BDAFE32003CE097 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			children = (
 				877A5B1D2BE65C07002D2D12 /* ScrollableTabBar.swift */,
 				8709F8982BBAFC1B000CCA81 /* StepperView.swift */,
+				879BA02E2C0CDAA600F1A3F0 /* TbeButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				8709F88E2BAB7E9C000CCA81 /* CustomerView-ViewModel.swift in Sources */,
 				873E40992B7D4CAD00158507 /* CatalogView.swift in Sources */,
 				8768263F2B97BE67004C5EC0 /* JewelleryType.swift in Sources */,
+				879BA02F2C0CDAA600F1A3F0 /* TbeButton.swift in Sources */,
 				8709F87A2BA5B458000CCA81 /* Color-Theme.swift in Sources */,
 				873B20702BCFFBB900E197BC /* AssetPreview.swift in Sources */,
 				873E408C2B7D4AD400158507 /* RootView.swift in Sources */,
@@ -597,6 +601,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShopAtTBE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access product photos to upload to database.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -632,6 +638,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ShopAtTBE/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Access product photos to upload to database.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -35,7 +35,6 @@ struct CartView: View {
                     .navigationTitle("Cart")
                 }
             }
-//            .addSideBar(using: AnyView(SideBarMenuView()))
         }
     }
     

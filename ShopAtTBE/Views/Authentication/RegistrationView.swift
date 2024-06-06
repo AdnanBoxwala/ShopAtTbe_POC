@@ -27,6 +27,10 @@ struct RegistrationView: View {
     @State private var alertTitle = ""
     @State private var alertMessage = "Please try again."
     
+    private var incompleteForm: Bool {
+        firstName.isEmpty || lastName.isEmpty || emailId.isEmpty || password.isEmpty || confirmPassword.isEmpty
+    }
+    
     let dateRange: ClosedRange<Date> = {
         let calendar = Calendar.current
         let startComponents = DateComponents(year: Calendar.current.component(.year, from: Date.now) - 100, month: 1, day: 1)
@@ -80,7 +84,7 @@ struct RegistrationView: View {
                     }
                     
                     Section {
-                        Button {
+                        TbeButton(title: "SIGN UP", systemName: "arrow.right") {
                             Task {
                                 do {
                                     try await authViewModel.createUser(firstName: firstName, lastName: lastName, dateOfBirth: dateOfBirth, withEmail: emailId, password: password)
@@ -89,19 +93,10 @@ struct RegistrationView: View {
                                     authFailed = true
                                 }
                             }
-                        } label: {
-                            HStack {
-                                Text("SIGN UP")
-                                    .foregroundStyle(Color.white)
-                                    .fontWeight(.semibold)
-                                Image(systemName: "arrow.right")
-                                    .foregroundStyle(Color.white)
-                                    .fontWeight(.semibold)
-                            }
                         }
+                        .disabled(incompleteForm)
                     }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.blue)
+                    .listRowBackground(Color.clear)
                 }
             }
             .alert(alertTitle, isPresented: $authFailed) {

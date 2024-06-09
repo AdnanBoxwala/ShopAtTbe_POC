@@ -12,6 +12,18 @@ import SwiftUI
 extension CustomerView {
     @Observable
     class ViewModel {
+        let paymentHandler = PaymentHandler()
+        var paymentSuccess = false
+        func pay() {
+            paymentHandler.startPayment(products: [Product.MOCK_PRODUCT], total: 100) { success in
+                if success {
+                    self.paymentSuccess = success
+                    // clear cart and total
+                    self.bag = []
+                }
+            }
+        }
+        
         var bag: [CartItem] = []
         
         var totalCost: Double {

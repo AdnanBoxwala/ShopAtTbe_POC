@@ -12,5 +12,9 @@
 	<array>
 		<string>CloudKit</string>
 	</array>
+	<key>com.apple.developer.in-app-payments</key>
+	<array>
+		<string>merchant.com.github.AdnanBox.ShopAtTBE</string>
+	</array>
 </dict>
 </plist>
